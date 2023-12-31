@@ -1,1 +1,5 @@
 # dotfiles
+
+- neovim
+- tmux
+- alacritty
