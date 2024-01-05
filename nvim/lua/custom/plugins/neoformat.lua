@@ -2,7 +2,7 @@ return {
   'sbdchd/neoformat',
   config = function()
     vim.g.neoformat_try_node_exe = 1
-    vim.api.nvim_create_autocmd(
+    local id = vim.api.nvim_create_autocmd(
       { 'BufWritePost' },
       {
         command = 'silent! Neoformat',
@@ -21,6 +21,13 @@ return {
           '*.rs',
         },
       }
+    )
+    vim.api.nvim_create_user_command(
+      'NeoformatDisableFormatOnSave',
+      function()
+        vim.api.nvim_del_autocmd(id)
+      end,
+      {}
     )
   end
 }
