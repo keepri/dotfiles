@@ -14,6 +14,7 @@ return {
           '*.ts',
           '*.tsx',
           '*.json',
+          '*.md',
           '*.lua',
           '*.cpp',
           '*.h',
