@@ -8,10 +8,16 @@ return {
   config = function()
     -- Switch for controlling whether you want autoformatting.
     --  Use :KickstartFormatToggle to toggle autoformatting on or off
-    local format_is_enabled = true
-    vim.api.nvim_create_user_command('KickstartFormatToggle', function()
-      format_is_enabled = not format_is_enabled
-      print('Setting autoformatting to: ' .. tostring(format_is_enabled))
+    local lsp_format_is_enabled = true
+    vim.api.nvim_create_user_command('FormatLspToggle', function()
+      lsp_format_is_enabled = not lsp_format_is_enabled
+      print('Setting autoformatting to: ' .. tostring(lsp_format_is_enabled))
+    end, {})
+
+    local neoformat_is_enabled = true
+    vim.api.nvim_create_user_command('FormatNeoToggle', function()
+      neoformat_is_enabled = not neoformat_is_enabled
+      print('Setting autoformatting with neoformat to: ' .. tostring(neoformat_is_enabled))
     end, {})
 
     -- Create an augroup that is used for managing our formatting autocmds.
@@ -39,6 +45,10 @@ return {
         local client = vim.lsp.get_client_by_id(client_id)
         local bufnr = args.buf
 
+        if not lsp_format_is_enabled or not neoformat_is_enabled then
+          return
+        end
+
         -- Only attach to clients that support document formatting
         if not client.server_capabilities.documentFormattingProvider then
           return
@@ -50,22 +60,22 @@ return {
           return
         end
 
-        -- Create an autocmd that will run *before* we save the buffer.
-        --  Run the formatting command for the LSP that has just attached.
         vim.api.nvim_create_autocmd('BufWritePre', {
           group = get_augroup(client),
           buffer = bufnr,
           callback = function()
-            if not format_is_enabled then
-              return
+            if lsp_format_is_enabled then
+              vim.lsp.buf.format {
+                async = false,
+                filter = function(c)
+                  return c.id == client.id
+                end,
+              }
             end
 
-            vim.lsp.buf.format {
-              async = false,
-              filter = function(c)
-                return c.id == client.id
-              end,
-            }
+            if neoformat_is_enabled then
+              vim.cmd('silent! Neoformat')
+            end
           end,
         })
       end,

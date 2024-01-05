@@ -2,8 +2,10 @@ return {
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -34,10 +36,10 @@ return {
       },
     },
   },
+
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
@@ -45,11 +47,18 @@ return {
 
   -- 'gc' to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+
+  {
+    'sbdchd/neoformat',
+    config = function()
+      vim.g.neoformat_try_node_exe = 1
+    end
+  },
+
   {
     'mbbill/undotree',
-    name = 'undotree',
     config = function()
       vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
     end
-  }
+  },
 }

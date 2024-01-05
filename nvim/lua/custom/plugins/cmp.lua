@@ -2,7 +2,6 @@ return {
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
-    name = 'nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
@@ -69,10 +68,11 @@ return {
       }
     end
   },
+
   {
     'windwp/nvim-autopairs',
     -- Optional dependency
-    dependencies = { 'nvim-cmp' },
+    dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       require('nvim-autopairs').setup {}
       -- If you want to automatically add `(` after selecting a function or method
