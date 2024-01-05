@@ -46,6 +46,7 @@ return {
         local bufnr = args.buf
 
         if not lsp_format_is_enabled or not neoformat_is_enabled then
+          print('Autoformatting is disabled')
           return
         end
 
@@ -58,20 +59,17 @@ return {
           group = get_augroup(client),
           buffer = bufnr,
           callback = function()
-            -- Try formatting with neoformat first
-            if neoformat_is_enabled then
-              vim.cmd('silent! Neoformat')
-              return
-            end
-
-            -- Fallback to lsp formatting
             if lsp_format_is_enabled then
-              vim.lsp.buf.format {
+              vim.lsp.buf.format({
                 async = false,
                 filter = function(c)
                   return c.id == client.id
                 end,
-              }
+              })
+            end
+
+            if neoformat_is_enabled then
+              vim.cmd('silent! Neoformat prettier')
             end
           end,
         })
