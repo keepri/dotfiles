@@ -58,6 +58,13 @@ return {
           group = get_augroup(client),
           buffer = bufnr,
           callback = function()
+            -- Try formatting with neoformat first
+            if neoformat_is_enabled then
+              vim.cmd('silent! Neoformat')
+              return
+            end
+
+            -- Fallback to lsp formatting
             if lsp_format_is_enabled then
               vim.lsp.buf.format {
                 async = false,
@@ -65,10 +72,6 @@ return {
                   return c.id == client.id
                 end,
               }
-            end
-
-            if neoformat_is_enabled then
-              vim.cmd('silent! Neoformat')
             end
           end,
         })
