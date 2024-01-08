@@ -3,11 +3,7 @@ return {
     'catppuccin/nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin'
-      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-
-      require('catppuccin').setup {
+      require('catppuccin').setup({
         flavour = 'mocha',
         transparent_background = true,
         term_colors = true,
@@ -29,7 +25,34 @@ return {
           mason = true,
           which_key = true,
         },
-      }
+      })
+
+      -- vim.cmd.colorscheme('catppuccin')
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+    end
+  },
+
+  {
+    'rose-pine/neovim',
+    priority = 1000,
+    config = function()
+      require('rose-pine').setup({
+        variant = "main",      -- auto, main, moon, or dawn
+        dark_variant = "main", -- main, moon, or dawn
+        dim_inactive_windows = true,
+        extend_background_behind_borders = true,
+
+        styles = {
+          bold = false,
+          italic = false,
+          transparency = true,
+        },
+      })
+
+      vim.cmd.colorscheme('rose-pine')
+      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
     end
   }
 }
