@@ -211,7 +211,14 @@ local servers = {
   },
   tailwindcss = {},
   jsonls = {},
-  tsserver = {},
+  tsserver = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+  },
   html = {},
   htmx = {},
   lua_ls = {
