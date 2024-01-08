@@ -17,10 +17,16 @@ return {
     config = function()
       -- [[ Configure nvim-cmp ]]
       -- See `:help cmp`
-      local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
+
       require('luasnip.loaders.from_vscode').lazy_load()
-      luasnip.config.setup {}
+      require('luasnip').filetype_extend('javascript', { 'jsdoc' })
+      require('luasnip').filetype_extend('javascriptreact', { 'jsdoc' })
+      require('luasnip').filetype_extend('typescript', { 'tsdoc' })
+      require('luasnip').filetype_extend('typescriptreact', { 'tsdoc' })
+
+      luasnip.config.setup({})
 
       cmp.setup {
         snippet = {
@@ -31,16 +37,16 @@ return {
         completion = {
           completeopt = 'menu,menuone,noinsert',
         },
-        mapping = cmp.mapping.preset.insert {
+        mapping = cmp.mapping.preset.insert({
           ['<C-n>'] = cmp.mapping.select_next_item(),
           ['<C-p>'] = cmp.mapping.select_prev_item(),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete {},
-          ['<CR>'] = cmp.mapping.confirm {
+          ['<C-Space>'] = cmp.mapping.complete({}),
+          ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-          },
+          }),
           -- ['<Tab>'] = cmp.mapping(function(fallback)
           --   if cmp.visible() then
           --     cmp.select_next_item()
@@ -59,7 +65,7 @@ return {
           --     fallback()
           --   end
           -- end, { 'i', 's' }),
-        },
+        }),
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
@@ -71,10 +77,9 @@ return {
 
   {
     'windwp/nvim-autopairs',
-    -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
-      require('nvim-autopairs').setup {}
+      require('nvim-autopairs').setup({})
       -- If you want to automatically add `(` after selecting a function or method
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
