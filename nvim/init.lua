@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -142,12 +142,7 @@ local on_attach = function(client, bufnr)
   end
 
   local function format()
-    vim.lsp.buf.format({
-      async = false,
-      filter = function(c)
-        return c.id == client.id
-      end,
-    })
+    vim.lsp.buf.format({ async = false })
     vim.cmd('silent! Neoformat prettier')
   end
 
