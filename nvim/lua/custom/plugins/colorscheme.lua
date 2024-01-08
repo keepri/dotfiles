@@ -1,3 +1,4 @@
+local theme = 'rose-pine'
 local function set_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme)
   vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
@@ -33,7 +34,7 @@ return {
         },
       })
 
-      -- set_colorscheme('catppuccin')
+      set_colorscheme(theme)
     end
   },
 
@@ -46,7 +47,6 @@ return {
         dark_variant = "main", -- main, moon, or dawn
         dim_inactive_windows = true,
         extend_background_behind_borders = true,
-
         styles = {
           bold = false,
           italic = false,
@@ -54,7 +54,7 @@ return {
         },
       })
 
-      set_colorscheme('rose-pine')
+      set_colorscheme(theme)
     end
   }
 }
