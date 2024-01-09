@@ -24,6 +24,30 @@ return {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    config = function()
+      local lint = require("lint")
+
+      lint.linters_by_ft = {
+        javascript = { "eslint" },
+        javascriptreact = { "eslint" },
+        typescript = { "eslint" },
+        typescriptreact = { "eslint" },
+      }
+
+      vim.api.nvim_create_autocmd({
+        "BufWinEnter",
+        "BufWritePost",
+        -- "TextChangedI", -- IDK about this one yet
+      }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+    end
+  },
+
+  {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
