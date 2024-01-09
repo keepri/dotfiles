@@ -3,21 +3,21 @@
 -- Use your language server to automatically format your code on save.
 -- Adds additional commands as well to manage the behavior
 return {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     config = function()
         -- Switch for controlling whether you want autoformatting.
         --  Use :FormatLspToggle or :FormatNeoToggle to toggle autoformatting on or off
         local lsp_format_is_enabled = false
         local neoformat_is_enabled = false
 
-        vim.api.nvim_create_user_command('FormatLspToggle', function()
+        vim.api.nvim_create_user_command("FormatLspToggle", function()
             lsp_format_is_enabled = not lsp_format_is_enabled
-            print('Setting autoformatting with lsp to: ' .. tostring(lsp_format_is_enabled))
+            print("Setting autoformatting with lsp to: " .. tostring(lsp_format_is_enabled))
         end, {})
 
-        vim.api.nvim_create_user_command('FormatNeoToggle', function()
+        vim.api.nvim_create_user_command("FormatNeoToggle", function()
             neoformat_is_enabled = not neoformat_is_enabled
-            print('Setting autoformatting with neoformat to: ' .. tostring(neoformat_is_enabled))
+            print("Setting autoformatting with neoformat to: " .. tostring(neoformat_is_enabled))
         end, {})
 
         -- Create an augroup that is used for managing our formatting autocmds.
@@ -26,7 +26,7 @@ return {
         local _augroups = {}
         local get_augroup = function(client)
             if not _augroups[client.id] then
-                local group_name = 'lsp-format-' .. client.name
+                local group_name = "lsp-format-" .. client.name
                 local id = vim.api.nvim_create_augroup(group_name, { clear = true })
                 _augroups[client.id] = id
             end
@@ -37,8 +37,8 @@ return {
         -- Whenever an LSP attaches to a buffer, we will run this function.
         --
         -- See `:help LspAttach` for more information about this autocmd event.
-        vim.api.nvim_create_autocmd('LspAttach', {
-            group = vim.api.nvim_create_augroup('lsp-attach-format', { clear = true }),
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
             -- This is where we attach the autoformatting for reasonable clients
             callback = function(args)
                 local client_id = args.data.client_id
@@ -54,7 +54,7 @@ return {
                     return
                 end
 
-                vim.api.nvim_create_autocmd('BufWritePre', {
+                vim.api.nvim_create_autocmd("BufWritePre", {
                     group = get_augroup(client),
                     buffer = bufnr,
                     callback = function()
@@ -68,7 +68,7 @@ return {
                         end
 
                         if neoformat_is_enabled then
-                            vim.cmd('silent! Neoformat prettier')
+                            vim.cmd("silent! Neoformat prettier")
                         end
                     end,
                 })

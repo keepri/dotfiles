@@ -1,17 +1,17 @@
-local theme = 'rose-pine'
+local theme = "rose-pine"
 local function set_colorscheme(colorscheme)
   vim.cmd.colorscheme(colorscheme)
-  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 return {
   {
-    'catppuccin/nvim',
+    "catppuccin/nvim",
     priority = 1000,
     config = function()
-      require('catppuccin').setup({
-        flavour = 'mocha',
+      require("catppuccin").setup({
+        flavour = "mocha",
         transparent_background = true,
         term_colors = true,
         show_end_of_buffer = false,
@@ -19,7 +19,7 @@ return {
         no_italic = true,
         dim_inactive = {
           enabled = true,
-          shade = 'dark',
+          shade = "dark",
           percentage = 0.25,
         },
         integrations = {
@@ -39,10 +39,10 @@ return {
   },
 
   {
-    'rose-pine/neovim',
+    "rose-pine/neovim",
     priority = 1000,
     config = function()
-      require('rose-pine').setup({
+      require("rose-pine").setup({
         variant = "main",      -- auto, main, moon, or dawn
         dark_variant = "main", -- main, moon, or dawn
         dim_inactive_windows = true,
