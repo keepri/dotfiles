@@ -50,7 +50,17 @@ return {
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      {
+        "nvim-tree/nvim-web-devicons",
+        config = function()
+          require("nvim-web-devicons").setup({
+            default = true,
+            strict = true,
+          })
+        end
+      },
+    },
     -- See `:help lualine.txt`
     opts = {
       options = {
