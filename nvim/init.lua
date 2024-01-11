@@ -9,9 +9,9 @@ vim.g.netrw_banner = 0
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath"data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system{
     "git",
     "clone",
     "--filter=blob:none",
@@ -117,7 +117,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
+  callback = function ()
     vim.highlight.on_yank()
   end,
   group = highlight_group,
@@ -126,14 +126,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function (_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
 
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+  local nmap = function (keys, func, desc)
     if desc then
       desc = "LSP: " .. desc
     end
@@ -165,12 +165,12 @@ local on_attach = function(_, bufnr)
   nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-  nmap("<leader>wl", function()
+  nmap("<leader>wl", function ()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
 
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+  vim.api.nvim_buf_create_user_command(bufnr, "Format", function (_)
     vim.lsp.buf.format({ async = false })
   end, { desc = "Format current buffer with LSP" })
 
@@ -252,7 +252,7 @@ mason_lspconfig.setup({
 })
 
 mason_lspconfig.setup_handlers({
-  function(server_name)
+  function (server_name)
     require("lspconfig")[server_name].setup({
       capabilities = capabilities,
       on_attach = on_attach,
