@@ -1,9 +1,9 @@
-local theme = "rose-pine"
+local theme = "rose-pine";
 local function set_colorscheme(colorscheme)
-    vim.cmd.colorscheme(colorscheme)
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-end
+    vim.cmd.colorscheme(colorscheme);
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" });
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" });
+end;
 
 return {
     {
@@ -32,9 +32,9 @@ return {
                     mason = true,
                     which_key = true,
                 },
-            })
+            });
 
-            set_colorscheme(theme)
+            set_colorscheme(theme);
         end,
     },
 
@@ -52,9 +52,9 @@ return {
                     italic = false,
                     transparency = true,
                 },
-            })
+            });
 
-            set_colorscheme(theme)
+            set_colorscheme(theme);
         end,
     },
-}
+};

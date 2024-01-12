@@ -13,13 +13,13 @@ return {
             ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
             ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
             ["<leader>k"] = { name = "[K]IPRI", _ = "which_key_ignore" },
-        })
+        });
 
         -- register which-key VISUAL mode
         -- required for visual <leader>hs (hunk stage) to work
         require("which-key").register({
             ["<leader>"] = { "VISUAL <leader>" },
             ["<leader>h"] = { "Git [H]unk" },
-        }, { mode = "v" })
+        }, { mode = "v" });
     end,
-}
+};

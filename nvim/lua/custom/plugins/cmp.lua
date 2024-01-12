@@ -17,21 +17,21 @@ return {
         config = function ()
             -- [[ Configure nvim-cmp ]]
             -- See `:help cmp`
-            local cmp = require("cmp")
-            local luasnip = require("luasnip")
+            local cmp = require("cmp");
+            local luasnip = require("luasnip");
 
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip").filetype_extend("javascript", { "jsdoc" })
-            require("luasnip").filetype_extend("javascriptreact", { "jsdoc" })
-            require("luasnip").filetype_extend("typescript", { "tsdoc" })
-            require("luasnip").filetype_extend("typescriptreact", { "tsdoc" })
+            require("luasnip.loaders.from_vscode").lazy_load();
+            require("luasnip").filetype_extend("javascript", { "jsdoc" });
+            require("luasnip").filetype_extend("javascriptreact", { "jsdoc" });
+            require("luasnip").filetype_extend("typescript", { "tsdoc" });
+            require("luasnip").filetype_extend("typescriptreact", { "tsdoc" });
 
-            luasnip.config.setup({})
+            luasnip.config.setup({});
 
             cmp.setup{
                 snippet = {
                     expand = function (args)
-                        luasnip.lsp_expand(args.body)
+                        luasnip.lsp_expand(args.body);
                     end,
                 },
                 completion = {
@@ -71,7 +71,7 @@ return {
                     { name = "luasnip" },
                     { name = "path" },
                 },
-            }
+            };
         end,
     },
 
@@ -79,11 +79,11 @@ return {
         "windwp/nvim-autopairs",
         dependencies = { "hrsh7th/nvim-cmp" },
         config = function ()
-            require("nvim-autopairs").setup({})
+            require("nvim-autopairs").setup({});
             -- If you want to automatically add `(` after selecting a function or method
-            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-            local cmp = require("cmp")
-            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp");
+            local cmp = require("cmp");
+            cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done());
         end,
     },
-}
+};

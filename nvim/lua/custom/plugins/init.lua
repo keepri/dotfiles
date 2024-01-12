@@ -26,7 +26,7 @@ return {
     {
         "mfussenegger/nvim-lint",
         config = function ()
-            local lint = require("lint")
+            local lint = require("lint");
 
             lint.linters_by_ft = {
                 javascript = { "eslint" },
@@ -34,7 +34,7 @@ return {
 
                 typescript = { "eslint" },
                 typescriptreact = { "eslint" },
-            }
+            };
 
             vim.api.nvim_create_autocmd({
                 "BufWinEnter",
@@ -42,9 +42,9 @@ return {
                 -- "TextChangedI", -- IDK about this one yet
             }, {
                 callback = function ()
-                    lint.try_lint()
+                    lint.try_lint();
                 end,
-            })
+            });
         end,
     },
 
@@ -58,7 +58,7 @@ return {
                     require("nvim-web-devicons").setup({
                         default = true,
                         strict = true,
-                    })
+                    });
                 end,
             },
         },
@@ -87,14 +87,14 @@ return {
     {
         "sbdchd/neoformat",
         config = function ()
-            vim.g.neoformat_try_node_exe = 1
+            vim.g.neoformat_try_node_exe = 1;
         end,
     },
 
     {
         "mbbill/undotree",
         config = function ()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" })
+            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" });
         end,
     },
-}
+};
