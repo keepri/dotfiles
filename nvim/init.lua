@@ -144,7 +144,7 @@ local on_attach = function (_, bufnr)
   local function format()
     vim.cmd.Format();
     vim.api.nvim_command("silent! Neoformat prettier");
-  end
+  end;
 
   nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame");
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction");
@@ -238,7 +238,7 @@ local servers = {
   slint_lsp = {
     filetypes = { "slint" },
   },
-}
+};
 
 -- Setup neovim lua configuration
 require("neodev").setup();
