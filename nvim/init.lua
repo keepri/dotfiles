@@ -142,9 +142,9 @@ local on_attach = function (_, bufnr)
   end;
 
   local function format()
-    vim.lsp.buf.format({ async = false });
-    vim.cmd("silent! Neoformat prettier");
-  end;
+    vim.cmd.Format();
+    vim.api.nvim_command("silent! Neoformat prettier");
+  end
 
   nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame");
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction");
@@ -235,7 +235,10 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
-};
+  slint_lsp = {
+    filetypes = { "slint" },
+  },
+}
 
 -- Setup neovim lua configuration
 require("neodev").setup();
