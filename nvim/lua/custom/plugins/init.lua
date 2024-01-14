@@ -7,6 +7,13 @@ return {
     "tpope/vim-sleuth",
 
     {
+        "slint-ui/vim-slint",
+        config = function ()
+            require("lspconfig").slint_lsp.setup({});
+        end,
+    },
+
+    {
         -- LSP Configuration & Plugins
         "neovim/nvim-lspconfig",
         dependencies = {
