@@ -13,6 +13,7 @@ return {
             ["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
             ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
             ["<leader>k"] = { name = "[K]IPRI", _ = "which_key_ignore" },
+            ["<leader>l"] = { name = "[L]int", _ = "which_key_ignore" },
         });
 
         -- register which-key VISUAL mode

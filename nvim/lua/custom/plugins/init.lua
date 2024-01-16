@@ -52,6 +52,8 @@ return {
                     lint.try_lint();
                 end,
             });
+
+            vim.keymap.set("n", "<leader>ll", lint.try_lint, { desc = "Lint" });
         end,
     },
 
