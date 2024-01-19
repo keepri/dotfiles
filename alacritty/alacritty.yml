@@ -70,7 +70,7 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: Berkeley Mono Variable
+    family: Berkeley Mono
     style: Regular
     # family: InconsolataGo Nerd Font Mono
     # style: Regular
@@ -80,7 +80,7 @@ font:
 
   # The bold font face
   bold:
-    family: Berkeley Mono Variable
+    family: Berkeley Mono
     style: Bold
     # family: InconsolataGo Nerd Font Mono
     # style: Bold
@@ -89,7 +89,7 @@ font:
 
   # The italic font face
   italic:
-    family: Berkeley Mono Variable
+    family: Berkeley Mono
     style: Italic
     #   family: InconsolataGo Nerd Font Mono 
     #   style: "Light Italic"
