@@ -70,7 +70,7 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: Berkeley Mono
+    family: BerkeleyMono Nerd Font
     style: Regular
     # family: InconsolataGo Nerd Font Mono
     # style: Regular
@@ -80,7 +80,7 @@ font:
 
   # The bold font face
   bold:
-    family: Berkeley Mono
+    family: BerkeleyMono Nerd Font 
     style: Bold
     # family: InconsolataGo Nerd Font Mono
     # style: Bold
@@ -89,7 +89,7 @@ font:
 
   # The italic font face
   italic:
-    family: Berkeley Mono
+    family: BerkeleyMono Nerd Font 
     style: Italic
     #   family: InconsolataGo Nerd Font Mono 
     #   style: "Light Italic"
@@ -98,7 +98,7 @@ font:
     # family: "Source Code Pro"
     # style: "Medium Italic"
 
-    # Point size of the font
+  # Point size of the font
   size: 14.0
 
   # Offset is the extra space around each character. offset.y can be thought of
@@ -113,23 +113,24 @@ font:
   glyph_offset:
     x: 0
     y: 0
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina you
-  # probably want this set to false.
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  # use_thin_strokes: true
 
-  # When true, bold text is drawn using the bright variant of colors.
+# Thin stroke font rendering (macOS only)
+#
+# Thin strokes are suitable for retina displays, but for non-retina you
+# probably want this set to false.
+#
+# macOS >= 10.14.x:
+#
+# If the font quality on non-retina display looks bad then set
+# `use_thin_strokes` to `true` and enable font smoothing by running the
+# following command:
+#   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
+#
+# This is a global setting and will require a log out or restart to take
+# effect.
+# use_thin_strokes: true
+
+# When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
@@ -230,7 +231,7 @@ custom_cursor_colors: true
 # `Linear`
 #
 # To completely disable the visual bell, set its duration to 0.
-#
+
 bell:
   animation: EaseOutExpo
   color: "#ffffff"
@@ -328,7 +329,7 @@ bell:
 #   - AppCursor
 #   - ~AppKeypad
 #   - AppKeypad
-#
+
 key_bindings:
   - { key: V, mods: Command, action: Paste }
   - { key: C, mods: Command, action: Copy }
@@ -445,6 +446,7 @@ selection:
 #
 # All available `mods` and `action` values are documented in the key binding
 # section.
+
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
