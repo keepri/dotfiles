@@ -32,6 +32,9 @@ return {
 
     {
         "mfussenegger/nvim-lint",
+        dependencies = {
+            "rshkarin/mason-nvim-lint",
+        },
         config = function ()
             local lint = require("lint");
 
