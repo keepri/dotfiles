@@ -226,7 +226,15 @@ local servers = {
     },
   },
   html = {},
-  htmx = {},
+  htmx = {
+    filetypes = {
+      "html",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
