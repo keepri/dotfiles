@@ -1,5 +1,6 @@
 *.log
 
+jgit/
 gh/
 github-copilot/
 tmux/plugins/
