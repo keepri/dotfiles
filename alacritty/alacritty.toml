@@ -5,7 +5,7 @@ TERM = "screen-256color"
 decorations = "Buttonless"
 startup_mode = "Maximized"
 padding = { x = 5, y = 5 }
-opacity = 0.7
+opacity = 0.9
 blur = true
 
 [cursor]
