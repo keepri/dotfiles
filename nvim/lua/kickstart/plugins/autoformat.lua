@@ -1,7 +1,3 @@
--- autoformat.lua
---
--- Use your language server to automatically format your code on save.
--- Adds additional commands as well to manage the behavior
 return {
     "neovim/nvim-lspconfig",
     config = function ()
@@ -21,9 +17,6 @@ return {
             vim.cmd.LspRestart();
         end;
 
-        -- Create an augroup that is used for managing our formatting autocmds.
-        --      We need one augroup per client to make sure that multiple clients
-        --      can attach to the same buffer without interfering with each other.
         local _augroups = {};
         local function get_augroup(client)
             if not _augroups[client.id] then
@@ -40,7 +33,6 @@ return {
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
-            -- This is where we attach the autoformatting for reasonable clients
             callback = function (args)
                 local client_id = args.data.client_id;
                 local client = vim.lsp.get_client_by_id(client_id);
@@ -50,7 +42,6 @@ return {
                     return;
                 end;
 
-                -- Only attach to clients that support document formatting
                 if not client.server_capabilities.documentFormattingProvider then
                     return;
                 end;
