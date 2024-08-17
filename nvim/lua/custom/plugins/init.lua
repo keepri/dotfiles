@@ -73,4 +73,13 @@ return {
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle Undotree" });
         end,
     },
+
+    {
+        "hedyhli/outline.nvim",
+        config = function ()
+            vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" });
+
+            require("outline").setup({});
+        end,
+    },
 };
