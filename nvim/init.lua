@@ -140,6 +140,8 @@ local on_attach = function (_, bufnr)
     });
 end;
 
+require("neodev").setup();
+
 require("mason").setup();
 require("mason-lspconfig").setup();
 
@@ -160,7 +162,37 @@ local servers = {
         },
     },
     tailwindcss = {},
-    jsonls = {},
+    jsonls = {
+        filetypes = {
+            "json",
+            "jsonc",
+        },
+        json = {
+            -- Schemas https://www.schemastore.org
+            schemas = {
+                {
+                    fileMatch = { "package.json" },
+                    url = "https://json.schemastore.org/package.json",
+                },
+                {
+                    fileMatch = { "tsconfig*.json" },
+                    url = "https://json.schemastore.org/tsconfig.json",
+                },
+                {
+                    fileMatch = {
+                        ".prettierrc",
+                        ".prettierrc.json",
+                        "prettier.config.json",
+                    },
+                    url = "https://json.schemastore.org/prettierrc.json",
+                },
+                {
+                    fileMatch = { ".eslintrc", ".eslintrc.json" },
+                    url = "https://json.schemastore.org/eslintrc.json",
+                },
+            },
+        },
+    },
     tsserver = {
         filetypes = {
             "javascript",
@@ -189,8 +221,6 @@ local servers = {
         filetypes = { "slint" },
     },
 };
-
-require("neodev").setup();
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
