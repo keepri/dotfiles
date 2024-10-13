@@ -3,3 +3,4 @@
 - neovim
 - tmux
 - alacritty
+- kitty

@@ -48,9 +48,9 @@ return {
                 dim_inactive_windows = true,
                 extend_background_behind_borders = true,
                 styles = {
-                    bold = false,
+                    bold = true,
                     italic = false,
-                    transparency = true,
+                    transparency = false,
                 },
             });
 
