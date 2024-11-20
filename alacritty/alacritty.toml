@@ -1,12 +1,3 @@
-# ~/.config/alacritty/themes: https://github.com/alacritty/alacritty-theme
-# enfocado_dark
-# github_dark_tritanopia p
-# pastel_dark
-# rose-pine-moon
-
-import = [
-    "~/.config/alacritty/themes/themes/rose-pine.toml"
-]
 
 [env]
 TERM = "screen-256color"
@@ -15,7 +6,7 @@ TERM = "screen-256color"
 decorations = "Buttonless"
 startup_mode = "Maximized"
 padding = { x = 5, y = 5 }
-opacity = 0.9
+opacity = 0.95
 blur = true
 
 [cursor]
@@ -40,3 +31,14 @@ log_level = "Info"
 [colors.cursor]
 text = "CellBackground"
 cursor = "CellForeground"
+
+[general]
+# ~/.config/alacritty/themes: https://github.com/alacritty/alacritty-theme
+# enfocado_dark
+# github_dark_tritanopia p
+# pastel_dark
+# rose-pine-moon
+
+import = [
+    "~/.config/alacritty/themes/themes/rose-pine.toml"
+]
