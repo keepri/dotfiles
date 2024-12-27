@@ -1,0 +1,20 @@
+theme = rose-pine
+
+font-family = Berkeley Mono
+font-size = 18
+
+background-opacity = 0.9
+background-blur-radius = 20
+minimum-contrast = 3
+
+window-save-state = always
+window-decoration = false
+window-padding-balance = true
+window-inherit-working-directory = true
+window-inherit-font-size = true
+
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+
+confirm-close-surface = false
