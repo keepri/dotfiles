@@ -1,10 +1,13 @@
 theme = rose-pine
 
+cursor-invert-fg-bg = true
+selection-invert-fg-bg = true
+
+font-size = 18
 font-family = Berkeley Mono
 font-family-bold = Berkeley Mono Bold
 font-family-italic = Berkeley Mono Italic
 font-family-bold-italic = Berkeley Mono Bold Italic
-font-size = 18
 
 background-opacity = 0.9
 background-blur-radius = 20
@@ -20,4 +23,5 @@ clipboard-read = allow
 clipboard-write = allow
 clipboard-paste-protection = false
 
+macos-auto-secure-input = true
 confirm-close-surface = false
