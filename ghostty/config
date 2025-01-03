@@ -3,7 +3,7 @@ theme = rose-pine
 cursor-invert-fg-bg = true
 selection-invert-fg-bg = true
 
-font-size = 18
+font-size = 20
 font-family = Berkeley Mono
 font-family-bold = Berkeley Mono Bold
 font-family-italic = Berkeley Mono Italic
