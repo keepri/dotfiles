@@ -3,12 +3,12 @@ return {
     "tpope/vim-rhubarb",
     "tpope/vim-sleuth",
 
-    {
-        "slint-ui/vim-slint",
-        config = function ()
-            require("lspconfig").slint_lsp.setup({});
-        end,
-    },
+    -- {
+    --     "slint-ui/vim-slint",
+    --     config = function ()
+    --         require("lspconfig").slint_lsp.setup({});
+    --     end,
+    -- },
 
     {
         "neovim/nvim-lspconfig",

@@ -31,6 +31,7 @@ vim.o.shiftwidth = 4;
 vim.o.expandtab = true;
 vim.o.number = true;
 vim.o.guicursor = "a:block";
+vim.o.winborder = "single";
 
 vim.o.hlsearch = false;
 
@@ -74,8 +75,8 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true });
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Move up" });
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Move down" });
 
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" });
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" });
+vim.keymap.set("n", "[d", function () vim.diagnostic.jump({ diagnostic = vim.diagnostic.get_prev() }); end, { desc = "Go to previous diagnostic message" });
+vim.keymap.set("n", "]d", function () vim.diagnostic.jump({ diagnostic = vim.diagnostic.get_next() }); end, { desc = "Go to next diagnostic message" });
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" });
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" });
 
@@ -215,9 +216,9 @@ local servers = {
             telemetry = { enable = false },
         },
     },
-    slint_lsp = {
-        filetypes = { "slint" },
-    },
+    -- slint_lsp = {
+    --     filetypes = { "slint" },
+    -- },
 };
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
@@ -227,6 +228,7 @@ local mason_lspconfig = require("mason-lspconfig");
 
 mason_lspconfig.setup({
     ensure_installed = vim.tbl_keys(servers),
+    automatic_installation = true,
 });
 
 mason_lspconfig.setup_handlers({
