@@ -1,5 +1,8 @@
 vim.g.mapleader = " ";
+
 vim.g.netrw_banner = 0;
+vim.g.loaded_netrwPlugin = 1;
+vim.g.loaded_netrw = 1;
 
 local lazypath = vim.fn.stdpath"data" .. "/lazy/lazy.nvim";
 if not vim.loop.fs_stat(lazypath) then
@@ -31,7 +34,7 @@ vim.o.shiftwidth = 4;
 vim.o.expandtab = true;
 vim.o.number = true;
 vim.o.guicursor = "a:block";
-vim.o.winborder = "single";
+vim.o.winborder = "none";
 
 vim.o.hlsearch = false;
 
@@ -55,7 +58,8 @@ vim.o.completeopt = "menuone,noselect";
 
 vim.o.termguicolors = true;
 
-vim.keymap.set("n", "<leader>kv", vim.cmd.Ex, { desc = "Open NetRw." });
+vim.keymap.set("n", "<leader>kv", ":Neotree reveal<CR>", { desc = "Open Neotree." });
+-- vim.keymap.set("n", "<leader>kv", vim.cmd.Ex, { desc = "Open NetRw." });
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up centered." });
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down centered." });
 vim.keymap.set("n", "n", "nzzzv", { desc = "Center while selecting next search result." });
