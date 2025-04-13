@@ -5,7 +5,9 @@ gh/
 github-copilot/
 tmux/plugins/
 configstore/
-zed/
+zed/*
+!zed/settings.json
+!zed/keymap.json
 simple-update-notifier/
 thefuck/
 alacritty/themes/

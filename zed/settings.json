@@ -1,0 +1,54 @@
+{
+    "auto_update": true,
+    "show_edit_predictions": false,
+    "theme": "Catppuccin Mocha",
+    "icon_theme": "Catppuccin Mocha",
+    "base_keymap": "JetBrains",
+    "vim_mode": true,
+    "vim": {
+        "use_system_clipboard": "never",
+        "toggle_relative_line_numbers": true
+    },
+    "ensure_final_newline_on_save": false,
+    "cursor_blink": false,
+    "ui_font_family": "BerkeleyMono Nerd Font",
+    "ui_font_size": 18,
+    "buffer_font_family": "BerkeleyMono Nerd Font",
+    "buffer_font_size": 18,
+    "buffer_font_features": {
+        "calt": true
+    },
+    "wrap_guides": [80],
+    "tab_size": 4,
+    "tab_bar": {
+        "show_nav_history_buttons": false
+    },
+    "tabs": {
+        "git_status": true,
+        "file_icons": false,
+        "show_diagnostics": "all"
+    },
+    "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+    },
+    "git": {
+        "inline_blame": {
+            "show_commit_summary": true
+        }
+    },
+    "indent_guides": {
+        "enabled": true,
+        "active_line_width": 3
+    },
+    "show_whitespaces": "selection",
+    "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": false,
+        "show_type_hints": false
+    },
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    }
+}
