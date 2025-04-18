@@ -134,7 +134,7 @@ local on_attach = function (_, bufnr)
 
     vim.diagnostic.config({
         underline = false,
-        virtual_lines = {
+        virtual_text = {
             prefix = "",
             spacing = 2,
         },
