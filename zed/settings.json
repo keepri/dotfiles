@@ -9,6 +9,9 @@
         "use_system_clipboard": "never",
         "toggle_relative_line_numbers": true
     },
+    "terminal": {
+        "default_height": 840
+    },
     "ensure_final_newline_on_save": false,
     "cursor_blink": false,
     "ui_font_family": "BerkeleyMono Nerd Font",
@@ -37,12 +40,11 @@
         "file_icons": false,
         "show_diagnostics": "all"
     },
-    "file_finder": {
-        "modal_max_width": "xlarge"
-    },
+    "format_on_save": "on",
+    "formatter": "auto",
     "code_actions_on_format": {
         "source.fixAll.eslint": true,
-        "source.organizeImports": true
+        "source.organizeImports": false
     },
     "git": {
         "inline_blame": {
