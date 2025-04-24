@@ -18,6 +18,12 @@
     "buffer_font_features": {
         "calt": true
     },
+    "diagnostics": {
+        "include_warnings": true,
+        "inline": {
+            "enabled": true
+        }
+    },
     "wrap_guides": [80],
     "tab_size": 4,
     "tab_bar": {
@@ -30,6 +36,9 @@
         "git_status": true,
         "file_icons": false,
         "show_diagnostics": "all"
+    },
+    "file_finder": {
+        "modal_max_width": "xlarge"
     },
     "code_actions_on_format": {
         "source.fixAll.eslint": true,
