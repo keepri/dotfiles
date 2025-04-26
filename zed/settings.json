@@ -13,7 +13,9 @@
         "default_height": 840
     },
     "ensure_final_newline_on_save": false,
+    "hide_mouse": "never",
     "cursor_blink": false,
+    "cursor_shape": "block",
     "ui_font_family": "BerkeleyMono Nerd Font",
     "ui_font_size": 18,
     "buffer_font_family": "BerkeleyMono Nerd Font",
@@ -32,6 +34,7 @@
     "tab_bar": {
         "show_nav_history_buttons": false
     },
+    "file_scan_inclusions": [".env", "logs.md"],
     "file_finder": {
         "modal_max_width": "xlarge"
     },
@@ -64,5 +67,8 @@
     "telemetry": {
         "diagnostics": false,
         "metrics": false
+    },
+    "jsx_tag_auto_close": {
+        "enabled": true
     }
 }
