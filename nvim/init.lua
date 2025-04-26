@@ -94,7 +94,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 });
 
 local on_attach = function (_, bufnr)
-    local nmap = function (keys, func, desc)
+    local function nmap(keys, func, desc)
         if desc then
             desc = "LSP: " .. desc;
         end;
@@ -102,14 +102,14 @@ local on_attach = function (_, bufnr)
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc });
     end;
 
-    local function format()
-        vim.cmd.Format();
+    local function neoformat()
         vim.api.nvim_command("silent! Neoformat prettier");
     end;
 
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame");
     nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction");
-    nmap("<leader>f", format, "[F]ormat code");
+    nmap("<leader>f", neoformat, "[F]ormat code using Neoformat prettier");
+    nmap("<leader>F", vim.cmd.Format, "[F]ormat code using LSP");
 
     nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition");
     nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences");
