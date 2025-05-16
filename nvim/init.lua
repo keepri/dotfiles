@@ -4,7 +4,7 @@ vim.g.netrw_banner = 0;
 vim.g.loaded_netrwPlugin = 1;
 vim.g.loaded_netrw = 1;
 
-local lazypath = vim.fn.stdpath"data" .. "/lazy/lazy.nvim";
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim";
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system{
         "git",
@@ -146,7 +146,6 @@ end;
 require("neodev").setup();
 
 require("mason").setup();
-require("mason-lspconfig").setup();
 
 local servers = {
     gopls = {},
@@ -228,23 +227,21 @@ local servers = {
 local capabilities = vim.lsp.protocol.make_client_capabilities();
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
-local mason_lspconfig = require("mason-lspconfig");
+local server_names = vim.tbl_keys(servers);
 
-mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers),
-    automatic_installation = true,
+require("mason-lspconfig").setup({
+    automatic_enable = true,
+    ensure_installed = server_names,
 });
 
-mason_lspconfig.setup_handlers({
-    function (server_name)
-        require("lspconfig")[server_name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-        });
-    end,
-});
+for _, server_name in pairs(server_names) do
+    require("lspconfig")[server_name].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+        filetypes = (servers[server_name] or {}).filetypes,
+    });
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function (args)
