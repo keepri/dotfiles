@@ -33,9 +33,18 @@ return {
                 completion = {
                     completeopt = "menu,menuone,noinsert",
                 },
+                -- In your cmp.lua, you can optionally change your <C-n>/<C-p> maps to this:
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-n>"] = cmp.mapping.select_next_item(),
-                    ["<C-p>"] = cmp.mapping.select_prev_item(),
+                    ["<C-n>"] = cmp.mapping(function ()
+                        if cmp.visible() then
+                            cmp.select_next_item();
+                        end;
+                    end, { "i", "s" }),
+                    ["<C-p>"] = cmp.mapping(function ()
+                        if cmp.visible() then
+                            cmp.select_prev_item();
+                        end;
+                    end, { "i", "s" }),
                     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete({}),

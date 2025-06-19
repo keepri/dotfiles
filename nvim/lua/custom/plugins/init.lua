@@ -18,7 +18,12 @@ return {
 
             { "j-hui/fidget.nvim", opts = {} },
 
-            "folke/neodev.nvim",
+            { "folke/neodev.nvim",
+                opts = {
+                    lazy = false,
+                    priority = 1000,
+                }
+            },
         },
     },
 

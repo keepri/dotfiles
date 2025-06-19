@@ -143,10 +143,6 @@ local on_attach = function (_, bufnr)
     });
 end;
 
-require("neodev").setup();
-
-require("mason").setup();
-
 local servers = {
     gopls = {},
     rust_analyzer = {},
@@ -215,13 +211,21 @@ local servers = {
     },
     lua_ls = {
         Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
+            runtime = {
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                globals = { "vim" },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
+            telemetry = {
+                enable = false,
+            },
         },
     },
-    -- slint_lsp = {
-    --     filetypes = { "slint" },
-    -- },
 };
 
 local capabilities = vim.lsp.protocol.make_client_capabilities();
@@ -229,19 +233,40 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
 local server_names = vim.tbl_keys(servers);
 
+require("mason").setup();
 require("mason-lspconfig").setup({
     automatic_enable = true,
     ensure_installed = server_names,
 });
 
+require("neodev").setup({
+    debug = false,
+    library = {
+        enabled = true,
+        runtime = true,
+        types = true,
+        plugins = {
+            "nvim-treesitter",
+            "plenary.nvim",
+            "telescope.nvim",
+        },
+    },
+    setup_jsonls = true,
+    override = function (root_dir, options) end,
+    lspconfig = true,
+    pathStrict = true,
+});
+
+local lspconfig = require("lspconfig");
 for _, server_name in pairs(server_names) do
-    require("lspconfig")[server_name].setup({
+    lspconfig[server_name].setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = servers[server_name],
-        filetypes = (servers[server_name] or {}).filetypes,
+        -- temp disabled as it causes issues with filetypes
+        -- filetypes = (servers[server_name] or {}).filetypes,
     });
-end
+end;
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function (args)
