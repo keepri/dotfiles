@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
 });
 
-local on_attach = function (_, bufnr)
+local on_attach = function (client, bufnr)
     local function nmap(keys, func, desc)
         if desc then
             desc = "LSP: " .. desc;
@@ -111,14 +111,21 @@ local on_attach = function (_, bufnr)
     nmap("<leader>f", neoformat, "[F]ormat code using Neoformat prettier");
     nmap("<leader>F", vim.cmd.Format, "[F]ormat code using LSP");
 
-    nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition");
-    nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences");
-    nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation");
-    nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition");
+    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition");
+    nmap("gr", require("telescope.builtin").lsp_references, "[D]ocument [S]ymbols");
+    nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation");
+    nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition");
     nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols");
     nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols");
 
-    nmap("K", vim.lsp.buf.hover, "Hover Documentation");
+    if client.name == "htmx" then
+        client.server_capabilities.hoverProvider = false
+    end;
+
+    if client.name == "ts_ls" then
+        nmap("K", vim.lsp.buf.hover, "Hover Do[K]umentation");
+    end;
+
     nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation");
 
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration");
@@ -151,9 +158,7 @@ local servers = {
             "html",
             "css",
             "scss",
-            "javascript",
             "javascriptreact",
-            "typescript",
             "typescriptreact",
             "go",
             "rust",
@@ -199,7 +204,15 @@ local servers = {
             "typescriptreact",
         },
     },
-    html = {},
+    html = {
+        filetypes = {
+            "html",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+        },
+    },
     htmx = {
         filetypes = {
             "html",
@@ -209,33 +222,14 @@ local servers = {
             "typescriptreact",
         },
     },
-    lua_ls = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-            },
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
-            },
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
+    lua_ls = {},
 };
-
-local capabilities = vim.lsp.protocol.make_client_capabilities();
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
 local server_names = vim.tbl_keys(servers);
 
 require("mason").setup();
 require("mason-lspconfig").setup({
-    automatic_enable = true,
+    automatic_enable = false,
     ensure_installed = server_names,
 });
 
@@ -252,10 +246,12 @@ require("neodev").setup({
         },
     },
     setup_jsonls = true,
-    override = function (root_dir, options) end,
     lspconfig = true,
     pathStrict = true,
 });
+
+local capabilities = vim.lsp.protocol.make_client_capabilities();
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
 local lspconfig = require("lspconfig");
 for _, server_name in pairs(server_names) do
@@ -263,16 +259,15 @@ for _, server_name in pairs(server_names) do
         capabilities = capabilities,
         on_attach = on_attach,
         settings = servers[server_name],
-        -- temp disabled as it causes issues with filetypes
-        -- filetypes = (servers[server_name] or {}).filetypes,
+        filetypes = (servers[server_name] or {}).filetypes,
     });
 end;
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function (args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id);
-        if client and client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true });
-        end;
-    end,
-});
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function (args)
+--         local client = vim.lsp.get_client_by_id(args.data.client_id);
+--         if client and client:supports_method("textDocument/completion") then
+--             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true });
+--         end;
+--     end,
+-- });

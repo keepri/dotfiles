@@ -22,7 +22,6 @@ return {
                     "vimdoc",
                     "vim",
                     "bash",
-                    -- "slint",
                 },
                 modules = {},
                 sync_install = true,
