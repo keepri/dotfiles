@@ -17,6 +17,8 @@ return {
             ["cpp"] = true,
             ["go"] = true,
             ["bash"] = true,
+            ["php"] = true,
+            ["blade"] = true,
         };
     end,
 };

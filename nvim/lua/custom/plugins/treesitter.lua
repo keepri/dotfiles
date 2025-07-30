@@ -53,6 +53,7 @@ return {
             "xml",
             "yaml",
             "php",
+            "php_only",
             "phpdoc",
         },
         modules = {},

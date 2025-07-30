@@ -163,9 +163,22 @@ local servers = {
             "go",
             "rust",
             "php",
+            "blade",
         },
     },
-    tailwindcss = {},
+    tailwindcss = {
+        filetypes = {
+            "html",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "css",
+            "scss",
+            "php",
+            "blade",
+        },
+    },
     jsonls = {
         filetypes = {
             "json",
@@ -206,12 +219,26 @@ local servers = {
         },
     },
     html = {
+        init_options = {
+            provideFormatter = true,
+            configurationSection = {
+                "html",
+                "css",
+                "javascript",
+            },
+            embeddedLanguages = {
+                css = true,
+                javascript = true,
+            },
+        },
         filetypes = {
             "html",
             "javascript",
             "javascriptreact",
             "typescript",
             "typescriptreact",
+            "php",
+            "blade",
         },
     },
     htmx = {
@@ -221,6 +248,8 @@ local servers = {
             "javascriptreact",
             "typescript",
             "typescriptreact",
+            "php",
+            "blade",
         },
     },
     lua_ls = {
@@ -251,6 +280,7 @@ local servers = {
     intelephense = {
         filetypes = {
             "php",
+            "blade",
         },
     },
 };
@@ -280,6 +310,22 @@ require("neodev").setup({
     pathStrict = true,
 });
 
+vim.filetype.add({
+    pattern = {
+        [".*%.blade%.php"] = "blade",
+    },
+});
+
+local bladeGrp;
+vim.api.nvim_create_augroup("BladeFiltypeRelated", { clear = true });
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*.blade.php",
+    group = bladeGrp,
+    callback = function ()
+        vim.o.filetype = "blade";
+    end,
+});
+
 local capabilities = vim.lsp.protocol.make_client_capabilities();
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
@@ -292,6 +338,18 @@ for _, server_name in pairs(server_names) do
         filetypes = (servers[server_name] or {}).filetypes,
     });
 end;
+
+-- continue setting up treesitter for blade file types
+---@class ParserConfig
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs();
+parser_config.blade = {
+    install_info = {
+        url = "https://github.com/EmranMR/tree-sitter-blade",
+        files = { "src/parser.c" },
+        branch = "main",
+    },
+    filetype = "blade",
+};
 
 -- local function clear_match()
 --   if vim.g.current_word_match_id then

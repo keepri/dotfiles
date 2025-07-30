@@ -53,17 +53,13 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
         opts = {
-            ---@type ibl.config.indent
             indent = {
                 char = "▏",
                 tab_char = "▏",
                 highlight = "IndentBlanklineChar",
             },
 
-            ---@type ibl.config.scope
             scope = {
                 char = "▎",
                 show_start = true,
