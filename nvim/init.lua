@@ -36,7 +36,7 @@ vim.o.number = true;
 vim.o.guicursor = "a:block";
 vim.o.winborder = "none";
 
-vim.o.hlsearch = false;
+vim.o.hlsearch = true;
 
 vim.wo.relativenumber = true;
 
@@ -51,7 +51,7 @@ vim.o.smartcase = true;
 
 vim.wo.signcolumn = "yes";
 
-vim.o.updatetime = 4000;
+vim.o.updatetime = 300;
 vim.o.timeoutlen = 300;
 
 vim.o.completeopt = "menuone,noselect";
@@ -119,7 +119,7 @@ local on_attach = function (client, bufnr)
     nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols");
 
     if client.name == "htmx" then
-        client.server_capabilities.hoverProvider = false
+        client.server_capabilities.hoverProvider = false;
     end;
 
     if client.name == "ts_ls" then
@@ -162,6 +162,7 @@ local servers = {
             "typescriptreact",
             "go",
             "rust",
+            "php",
         },
     },
     tailwindcss = {},
@@ -222,7 +223,36 @@ local servers = {
             "typescriptreact",
         },
     },
-    lua_ls = {},
+    lua_ls = {
+        filetypes = {
+            "lua",
+        },
+        settings = {
+            Lua = {
+                runtime = {
+                    version = "LuaJIT",
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false,
+                },
+                diagnostics = {
+                    globals = { "vim" },
+                },
+                doc = {
+                    privateName = { "^_" },
+                },
+                telemetry = {
+                    enable = false,
+                },
+            },
+        },
+    },
+    intelephense = {
+        filetypes = {
+            "php",
+        },
+    },
 };
 
 local server_names = vim.tbl_keys(servers);
@@ -262,6 +292,27 @@ for _, server_name in pairs(server_names) do
         filetypes = (servers[server_name] or {}).filetypes,
     });
 end;
+
+-- local function clear_match()
+--   if vim.g.current_word_match_id then
+--     pcall(vim.fn.matchdelete, vim.g.current_word_match_id)
+--     vim.g.current_word_match_id = nil
+--   end
+-- end
+-- local function highlight_word()
+--   clear_match()
+--   local word = vim.fn.expand("<cword>")
+--   if word ~= "" then
+--     local pattern = [[\V\<]] .. word .. [[\>]]
+--     vim.g.current_word_match_id = vim.fn.matchadd("Search", pattern)
+--   end
+-- end
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   callback = highlight_word,
+-- })
+-- vim.api.nvim_create_autocmd("CursorMoved", {
+--   callback = clear_match,
+-- })
 
 -- vim.api.nvim_create_autocmd("LspAttach", {
 --     callback = function (args)

@@ -43,7 +43,7 @@
         "file_icons": false,
         "show_diagnostics": "all"
     },
-    "format_on_save": "on",
+    "format_on_save": "off",
     "formatter": "auto",
     "code_actions_on_format": {
         "source.fixAll.eslint": true,
