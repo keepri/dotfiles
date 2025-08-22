@@ -5,9 +5,11 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
-        -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+        -- Optional image support in preview window: See `# Preview Mode` for more information
+        -- {"3rd/image.nvim", opts = {}},
     },
-    lazy = false, -- neo-tree will lazily load itself
+    -- neo-tree will lazily load itself
+    lazy = false,
     ---@type neotree.Config.Base
     opts = {
         -- If a user has a sources list it will replace this one.
@@ -20,87 +22,124 @@ return {
             "git_status",
             -- "document_symbols",
         },
-        add_blank_line_at_top = false,           -- Add a blank line at the top of the tree.
-        auto_clean_after_session_restore = true, -- Automatically clean up broken neo-tree buffers saved in sessions
-        close_if_last_window = false,            -- Close Neo-tree if it is the last window left in the tab
-        default_source = "filesystem",           -- you can choose a specific source `last` here which indicates the last used source
+        -- Add a blank line at the top of the tree.
+        add_blank_line_at_top = false,
+        -- Automatically clean up broken neo-tree buffers saved in sessions
+        auto_clean_after_session_restore = true,
+        -- Close Neo-tree if it is the last window left in the tab
+        close_if_last_window = false,
+        -- you can choose a specific source `last` here which indicates the last used source
+        default_source = "filesystem",
         enable_diagnostics = true,
         enable_git_status = true,
-        enable_modified_markers = true, -- Show markers for files with unsaved changes.
-        enable_opened_markers = true,   -- Enable tracking of opened files. Required for `components.name.highlight_opened_files`
-        enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
-        enable_cursor_hijack = false,   -- If enabled neotree will keep the cursor on the first letter of the filename when moving in the tree.
+        -- Show markers for files with unsaved changes.
+        enable_modified_markers = true,
+        -- Enable tracking of opened files. Required for `components.name.highlight_opened_files`
+        enable_opened_markers = true,
+        -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
+        enable_refresh_on_write = true,
+        -- If enabled neotree will keep the cursor on the first letter of the filename when moving in the tree.
+        enable_cursor_hijack = false,
         git_status_async = true,
         -- These options are for people with VERY large git repos
         git_status_async_options = {
-            batch_size = 1000, -- how many lines of git status results to process at a time
-            batch_delay = 10,  -- delay in ms between batches. Spreads out the workload to let other processes run.
-            max_lines = 10000, -- How many lines of git status results to process. Anything after this will be dropped.
+            -- how many lines of git status results to process at a time
+            batch_size = 1000,
+            -- delay in ms between batches. Spreads out the workload to let other processes run.
+            batch_delay = 10,
+            -- How many lines of git status results to process. Anything after this will be dropped.
+            max_lines = 10000,
             -- Anything before this will be used. The last items to be processed are the untracked files.
         },
-        hide_root_node = true,                                                     -- Hide the root node.
-        retain_hidden_root_indent = false,                                         -- IF the root node is hidden, keep the indentation anyhow.
+        -- Hide the root node.
+        hide_root_node = true,
+        -- IF the root node is hidden, keep the indentation anyhow.
+        retain_hidden_root_indent = false,
         -- This is needed if you use expanders because they render in the indent.
-        log_level = "info",                                                        -- "trace", "debug", "info", "warn", "error", "fatal"
-        log_to_file = false,                                                       -- true, false, "/path/to/file.log", use ':lua require("neo-tree").show_logs()' to show the file
-        open_files_in_last_window = true,                                          -- false = open files in top left window
-        open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" }, -- when opening files, do not use windows containing these filetypes or buftypes
+        -- "trace", "debug", "info", "warn", "error", "fatal"
+        log_level = "info",
+        -- true, false, "/path/to/file.log", use ':lua require("neo-tree").show_logs()' to show the file
+        log_to_file = false,
+        -- false = open files in top left window
+        open_files_in_last_window = true,
+        -- when opening files, do not use windows containing these filetypes or buftypes
+        open_files_do_not_replace_types = { "terminal",
+            "Trouble", "qf", "edgy" },
         open_files_using_relative_paths = false,
         -- popup_border_style is for input and confirmation dialogs.
         -- Configurtaion of floating window is done in the individual source sections.
         -- "NC" is a special style that works well with NormalNC set
-        popup_border_style = "NC",   -- "double", "none", "rounded", "shadow", "single" or "solid"
-        resize_timer_interval = 500, -- in ms, needed for containers to redraw right aligned and faded content
+        -- "double", "none", "rounded", "shadow", "single" or "solid"
+        popup_border_style = "NC",
+        -- in ms, needed for containers to redraw right aligned and faded content
+        resize_timer_interval = 500,
         -- set to -1 to disable the resize timer entirely
-        --                           -- NOTE: this will speed up to 50 ms for 1 second following a resize
-        sort_case_insensitive = false, -- used when sorting files and directories in the tree
-        sort_function = nil,           -- uses a custom function for sorting files and directories in the tree
-        use_popups_for_input = true,   -- If false, inputs will use vim.ui.input() instead of custom floats.
+        -- NOTE: this will speed up to 50 ms for 1 second following a resize
+        -- used when sorting files and directories in the tree
+        sort_case_insensitive = false,
+        -- uses a custom function for sorting files and directories in the tree
+        sort_function = nil,
+        -- If false, inputs will use vim.ui.input() instead of custom floats.
+        use_popups_for_input = true,
         use_default_mappings = true,
         -- source_selector provides clickable tabs to switch between sources.
         source_selector = {
-            winbar = false,                        -- toggle to show selector on winbar
-            statusline = false,                    -- toggle to show selector on statusline
-            show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
+            -- toggle to show selector on winbar
+            winbar = false,
+            -- toggle to show selector on statusline
+            statusline = false,
+            -- this will replace the tabs with the parent path
+            show_scrolled_off_parent_node = false,
             -- of the top visible node when scrolled down.
             sources = {
                 { source = "filesystem" },
                 { source = "buffers" },
                 { source = "git_status" },
             },
-            content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
+            -- only with `tabs_layout` = "equal", "focus"
+            content_layout = "start",
             --                start  : |/ 󰓩 bufname     \/...
             --                end    : |/     󰓩 bufname \/...
             --                center : |/   󰓩 bufname   \/...
-            tabs_layout = "equal", -- start, end, center, equal, focus
+            -- start, end, center, equal, focus
+            tabs_layout = "equal",
             --             start  : |/  a  \/  b  \/  c  \            |
             --             end    : |            /  a  \/  b  \/  c  \|
             --             center : |      /  a  \/  b  \/  c  \      |
             --             equal  : |/    a    \/    b    \/    c    \|
             --             active : |/  focused tab    \/  b  \/  c  \|
-            truncation_character = "…", -- character to use when truncating the tab label
-            tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
-            tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
-            padding = 0, -- can be int or table
+            -- character to use when truncating the tab label
+            truncation_character = "…",
+            -- nil | int: if int padding is added based on `content_layout`
+            tabs_min_width = nil,
+            -- this will truncate text even if `text_trunc_to_fit = false`
+            tabs_max_width = nil,
+            -- can be int or table
+            padding = 0,
             -- padding = { left = 2, right = 0 },
-            -- separator = "▕", -- can be string or table, see below
+            -- can be string or table, see below
             separator = { left = "▏", right = "▕" },
-            -- separator = { left = "/", right = "\\", override = nil },     -- |/  a  \/  b  \/  c  \...
-            -- separator = { left = "/", right = "\\", override = "right" }, -- |/  a  \  b  \  c  \...
-            -- separator = { left = "/", right = "\\", override = "left" },  -- |/  a  /  b  /  c  /...
-            -- separator = { left = "/", right = "\\", override = "active" },-- |/  a  / b:active \  c  \...
-            -- separator = "|",                                              -- ||  a  |  b  |  c  |...
-            separator_active = nil, -- set separators around the active tab. nil falls back to `source_selector.separator`
+            -- |/  a  \/  b  \/  c  \...
+            -- separator = { left = "/", right = "\\", override = nil },
+            -- |/  a  \  b  \  c  \...
+            -- separator = { left = "/", right = "\\", override = "right" },
+            -- |/  a  /  b  /  c  /...
+            -- separator = { left = "/", right = "\\", override = "left" },
+            -- |/  a  / b:active \  c  \...
+            -- separator = { left = "/", right = "\\", override = "active" },
+            -- ||  a  |  b  |  c  |...
+            -- separator = "|",
+            -- set separators around the active tab. nil falls back to `source_selector.separator`
+            separator_active = nil,
             show_separator_on_edge = false,
-            --                       true  : |/    a    \/    b    \/    c    \|
-            --                       false : |     a    \/    b    \/    c     |
+            -- true  : |/    a    \/    b    \/    c    \|
+            -- false : |     a    \/    b    \/    c     |
             highlight_tab = "NeoTreeTabInactive",
             highlight_tab_active = "NeoTreeTabActive",
             highlight_background = "NeoTreeTabInactive",
             highlight_separator = "NeoTreeTabSeparatorInactive",
             highlight_separator_active = "NeoTreeTabSeparatorActive",
         },
-        --
         event_handlers = {
             {
                 event = "file_opened",
@@ -200,7 +239,8 @@ return {
                 last_indent_marker = "└",
                 highlight = "NeoTreeIndentMarker",
                 -- expander config, needed for nesting files
-                with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+                -- if nil and file nesting is enabled, will enable expanders
+                with_expanders = nil,
                 expander_collapsed = "",
                 expander_expanded = "",
                 expander_highlight = "NeoTreeExpander",
@@ -214,7 +254,8 @@ return {
                 -- then these will never be used.
                 default = "*",
                 highlight = "NeoTreeFileIcon",
-                provider = function (icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
+                -- default icon provider utilizes nvim-web-devicons if available
+                provider = function (icon, node, state)
                     if node.type == "file" or node.type == "terminal" then
                         local success, web_devicons = pcall(require, "nvim-web-devicons");
                         local name = node.type == "terminal" and "terminal" or node.name;
@@ -232,7 +273,8 @@ return {
             },
             name = {
                 trailing_slash = false,
-                highlight_opened_files = false, -- Requires `enable_opened_markers = true`.
+                -- Requires `enable_opened_markers = true`.
+                highlight_opened_files = true,
                 -- Take values in { false (no highlight), true (only loaded),
                 -- "all" (both loaded and unloaded)}. For more information,
                 -- see the `show_unloaded` config of the `buffers` source.
@@ -240,10 +282,12 @@ return {
                 highlight = "NeoTreeFileName",
             },
             git_status = {
-                enabled = false, -- NOTE: this enables/disables the git status for directory/file information portrayed by the symbols below
+                -- NOTE: this enables/disables the git status for directory/file information portrayed by the symbols below
+                enabled = false,
                 symbols = {
                     -- Change type
-                    added = "✚", -- NOTE: you can set any of these to an empty string to not show them
+                    -- NOTE: you can set any of these to an empty string to not show them
+                    added = "✚",
                     deleted = "✖",
                     modified = "",
                     renamed = "󰁕",
@@ -258,33 +302,45 @@ return {
             -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
             file_size = {
                 enabled = true,
-                width = 12,          -- width of the column
-                required_width = 64, -- min width of window required to show this column
+                -- width of the column
+                width = 12,
+                -- min width of window required to show this column
+                required_width = 64,
             },
             type = {
                 enabled = false,
-                width = 10,           -- width of the column
-                required_width = 110, -- min width of window required to show this column
+                -- width of the column
+                width = 10,
+                -- min width of window required to show this column
+                required_width = 110,
             },
             last_modified = {
                 enabled = false,
-                width = 20,                   -- width of the column
-                required_width = 88,          -- min width of window required to show this column
-                format = "%Y-%m-%d %I:%M %p", -- format string for timestamp (see `:h os.date()`)
+                -- width of the column
+                width = 20,
+                -- min width of window required to show this column
+                required_width = 88,
+                -- format string for timestamp (see `:h os.date()`)
+                format = "%Y-%m-%d %I:%M %p",
                 -- or use a function that takes in the date in seconds and returns a string to display
                 --format = require("neo-tree.utils").relative_date, -- enable relative timestamps
             },
             created = {
                 enabled = false,
-                width = 20,                   -- width of the column
-                required_width = 120,         -- min width of window required to show this column
-                format = "%Y-%m-%d %I:%M %p", -- format string for timestamp (see `:h os.date()`)
+                -- width of the column
+                width = 20,
+                -- min width of window required to show this column
+                required_width = 120,
+                -- format string for timestamp (see `:h os.date()`)
                 -- or use a function that takes in the date in seconds and returns a string to display
-                --format = require("neo-tree.utils").relative_date, -- enable relative timestamps
+                format = "%Y-%m-%d %I:%M %p",
+                -- enable relative timestamps
+                --format = require("neo-tree.utils").relative_date,
             },
             symlink_target = {
                 enabled = false,
-                text_format = " ➛ %s", -- %s will be replaced with the symlink target's path.
+                -- %s will be replaced with the symlink target's path.
+                text_format = " ➛ %s",
             },
         },
         renderers = {
@@ -295,19 +351,52 @@ return {
                 {
                     "container",
                     content = {
-                        { "name", zindex = 10 },
+                        {
+                            "name",
+                            zindex = 10,
+                        },
                         {
                             "symlink_target",
                             zindex = 10,
                             highlight = "NeoTreeSymbolicLinkTarget",
                         },
-                        { "clipboard", zindex = 10 },
-                        { "diagnostics", errors_only = true, zindex = 20, align = "right", hide_when_expanded = true },
-                        { "git_status", zindex = 10, align = "right", hide_when_expanded = true },
-                        { "file_size", zindex = 10, align = "right" },
-                        { "type", zindex = 10, align = "right" },
-                        { "last_modified", zindex = 10, align = "right" },
-                        { "created", zindex = 10, align = "right" },
+                        {
+                            "clipboard",
+                            zindex = 10,
+                        },
+                        {
+                            "diagnostics",
+                            errors_only = true,
+                            zindex = 20,
+                            align = "right",
+                            hide_when_expanded = true,
+                        },
+                        {
+                            "git_status",
+                            zindex = 10,
+                            align = "right",
+                            hide_when_expanded = true,
+                        },
+                        {
+                            "file_size",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "type",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "last_modified",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "created",
+                            zindex = 10,
+                            align = "right",
+                        },
                     },
                 },
             },
@@ -326,15 +415,49 @@ return {
                             zindex = 10,
                             highlight = "NeoTreeSymbolicLinkTarget",
                         },
-                        { "clipboard", zindex = 10 },
-                        { "bufnr", zindex = 10 },
-                        { "modified", zindex = 20, align = "right" },
-                        { "diagnostics", zindex = 20, align = "right" },
-                        { "git_status", zindex = 10, align = "right" },
-                        { "file_size", zindex = 10, align = "right" },
-                        { "type", zindex = 10, align = "right" },
-                        { "last_modified", zindex = 10, align = "right" },
-                        { "created", zindex = 10, align = "right" },
+                        {
+                            "clipboard",
+                            zindex = 10,
+                        },
+                        {
+                            "bufnr",
+                            zindex = 10,
+                        },
+                        {
+                            "modified",
+                            zindex = 20,
+                            align = "right",
+                        },
+                        {
+                            "diagnostics",
+                            zindex = 20,
+                            align = "right",
+                        },
+                        {
+                            "git_status",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "file_size",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "type",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "last_modified",
+                            zindex = 10,
+                            align = "right",
+                        },
+                        {
+                            "created",
+                            zindex = 10,
+                            align = "right",
+                        },
                     },
                 },
             },
@@ -363,28 +486,39 @@ return {
         -- }                         |  }                        |      end
         --
         -- see `:h neo-tree-custom-commands-global`
-        commands = {},                 -- A list of functions
+        -- A list of functions
+        commands = {},
 
-        window = {                     -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+        -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+        window = {
             -- possible options. These can also be functions that return these options.
-            position = "current",      -- left, right, top, bottom, float, current
-            width = 40,                -- applies to left and right positions
-            height = 15,               -- applies to top and bottom positions
-            auto_expand_width = false, -- expand the window when file exceeds the window width. does not work with position = "float"
-            popup = {                  -- settings that apply to float position only
+            -- left, right, top, bottom, float, current
+            position = "current",
+            -- applies to left and right positions
+            width = 40,
+            -- applies to top and bottom positions
+            height = 15,
+            -- expand the window when file exceeds the window width. does not work with position = "float"
+            auto_expand_width = false,
+            -- settings that apply to float position only
+            popup = {
                 size = {
                     height = "80%",
                     width = "50%",
                 },
-                position = "50%",        -- 50% means center it
-                title = function (state) -- format the text that appears at the top of a popup window
+                -- 50% means center it
+                position = "50%",
+                -- format the text that appears at the top of a popup window
+                title = function (state)
                     return "Neo-tree " .. state.name:gsub("^%l", string.upper);
                 end,
                 -- you can also specify border here, if you want a different setting from
                 -- the global popup_border_style.
             },
-            same_level = false,  -- Create and paste/move files/directories on the same level as the directory under cursor (as opposed to within the directory under cursor).
-            insert_as = "child", -- Affects how nodes get inserted into the tree during creation/pasting/moving of files if the node under the cursor is a directory:
+            -- Create and paste/move files/directories on the same level as the directory under cursor (as opposed to within the directory under cursor).
+            same_level = false,
+            -- Affects how nodes get inserted into the tree during creation/pasting/moving of files if the node under the cursor is a directory:
+            insert_as = "child",
             -- "child":   Insert nodes as children of the directory under cursor.
             -- "sibling": Insert nodes  as siblings of the directory under cursor.
             -- Mappings for tree window. See `:h neo-tree-mappings` for a list of built-in commands.
@@ -394,18 +528,22 @@ return {
                 nowait = true,
             },
             mappings = {
-                -- nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+                -- disable `nowait` if you have existing combos starting with this char that you want to use
+                -- nowait = false,
                 ["l"] = "open",
                 ["<cr>"] = "open",
-                -- ["<cr>"] = { "open", config = { expand_nested_files = true } }, -- expand nested file takes precedence
+                -- expand nested file takes precedence
+                -- ["<cr>"] = { "open", config = { expand_nested_files = true } },
                 ["h"] = "close_node",
-                ["<esc>"] = "cancel", -- close preview or floating neo-tree window
+                -- close preview or floating neo-tree window
+                ["<esc>"] = "cancel",
                 -- ["P"] = {
                 --     "toggle_preview",
                 --     config = {
                 --         use_float = true,
                 --         use_image_nvim = false,
-                --         -- title = "Neo-tree Preview", -- You can define a custom title for the preview floating window.
+                --         -- You can define a custom title for the preview floating window.
+                --         title = "Neo-tree Preview",
                 --     },
                 -- },
                 -- ["<C-f>"] = { "scroll_preview", config = { direction = -10 } },
@@ -429,17 +567,21 @@ return {
                     "add",
                     -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                     config = {
-                        show_path = "relative", -- "none", "relative", "absolute"
+                        -- "none", "relative", "absolute"
+                        show_path = "relative",
                     },
                 },
-                ["d"] = "add_directory", -- also accepts the config.show_path and config.insert_as options.
+                -- also accepts the config.show_path and config.insert_as options.
+                ["d"] = "add_directory",
                 ["D"] = "delete",
                 ["R"] = "rename",
                 ["y"] = "copy_to_clipboard",
                 ["x"] = "cut_to_clipboard",
                 ["p"] = "paste_from_clipboard",
-                ["c"] = "copy", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
-                ["m"] = "move", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
+                -- takes text input for destination, also accepts the config.show_path and config.insert_as options
+                ["c"] = "copy",
+                -- takes text input for destination, also accepts the config.show_path and config.insert_as options
+                ["m"] = "move",
                 ["e"] = "toggle_auto_expand_width",
                 ["q"] = "close_window",
                 ["?"] = "show_help",
@@ -452,9 +594,11 @@ return {
                 mappings = {
                     ["H"] = "toggle_hidden",
                     ["/"] = "fuzzy_finder",
-                    -- ["D"] = "fuzzy_finder_directory",
-                    --["/"] = "filter_as_you_type", -- this was the default until v1.28
-                    ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+                    -- this was the default until v1.28
+                    -- ["/"] = "filter_as_you_type",
+                    -- ["/"] = "fuzzy_finder_directory",
+                    -- fuzzy sorting using the fzy algorithm
+                    ["#"] = "fuzzy_sorter",
                     -- ["D"] = "fuzzy_sorter_directory",
                     ["f"] = "filter_on_submit",
                     ["<C-x>"] = "clear_filter",
@@ -462,18 +606,48 @@ return {
                     ["."] = "set_root",
                     ["[g"] = "prev_git_modified",
                     ["]g"] = "next_git_modified",
-                    ["i"] = "show_file_details", -- see `:h neo-tree-file-actions` for options to customize the window.
+                    -- see `:h neo-tree-file-actions` for options to customize the window.
+                    ["i"] = "show_file_details",
                     ["b"] = "rename_basename",
-                    ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-                    ["oc"] = { "order_by_created", nowait = false },
-                    ["od"] = { "order_by_diagnostics", nowait = false },
-                    ["og"] = { "order_by_git_status", nowait = false },
-                    ["om"] = { "order_by_modified", nowait = false },
-                    ["on"] = { "order_by_name", nowait = false },
-                    ["os"] = { "order_by_size", nowait = false },
-                    ["ot"] = { "order_by_type", nowait = false },
+                    ["o"] = {
+                        "show_help",
+                        nowait = false,
+                        config = {
+                            title = "Order by",
+                            prefix_key = "o",
+                        },
+                    },
+                    ["oc"] = {
+                        "order_by_created",
+                        nowait = false,
+                    },
+                    ["od"] = {
+                        "order_by_diagnostics",
+                        nowait = false,
+                    },
+                    ["og"] = {
+                        "order_by_git_status",
+                        nowait = false,
+                    },
+                    ["om"] = {
+                        "order_by_modified",
+                        nowait = false,
+                    },
+                    ["on"] = {
+                        "order_by_name",
+                        nowait = false,
+                    },
+                    ["os"] = {
+                        "order_by_size",
+                        nowait = false,
+                    },
+                    ["ot"] = {
+                        "order_by_type",
+                        nowait = false,
+                    },
                 },
-                fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+                -- define keymaps for filter popup window in fuzzy_finder_mode
+                fuzzy_finder_mappings = {
                     ["<down>"] = "move_cursor_down",
                     ["<C-n>"] = "move_cursor_down",
                     ["<up>"] = "move_cursor_up",
@@ -481,17 +655,22 @@ return {
                     ["<esc>"] = "close",
                 },
             },
-            async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
+            -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
             -- "always" means directory scans are always async.
             -- "never"  means directory scans are never async.
-            scan_mode = "shallow",            -- "shallow": Don't scan into directories to detect possible empty directory a priori
+            async_directory_scan = "auto",
+            -- "shallow": Don't scan into directories to detect possible empty directory a priori
             -- "deep": Scan into directories to detect empty or grouped empty directories a priori.
-            bind_to_cwd = true,               -- true creates a 2-way binding between vim's cwd and neo-tree's root
+            scan_mode = "deep",
+            -- true creates a 2-way binding between vim's cwd and neo-tree's root
+            bind_to_cwd = true,
             cwd_target = {
-                sidebar = "tab",              -- sidebar is when position = left or right
-                current = "window",           -- current is when position = current
+                -- sidebar is when position = left or right
+                sidebar = "tab",
+                -- current is when position = current
+                current = "window",
             },
-            check_gitignore_in_search = true, -- check gitignore status for files/directories when searching
+            -- check gitignore status for files/directories when searching
             -- setting this to false will speed up searches, but gitignored
             -- items won't be marked if they are visible.
             -- The renderer section provides the renderers that will be used to render the tree.
@@ -500,110 +679,163 @@ return {
             --       Components are rendered in the order they are specified.
             --         The first field in each component is the name of the function to call.
             --         The rest of the fields are passed to the function as the "config" argument.
+            check_gitignore_in_search = true,
             filtered_items = {
-                visible = true,                        -- when true, they will just be displayed differently than normal items
-                force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
-                show_hidden_count = false,             -- when true, the number of hidden items in each folder will be shown as the last entry
+                -- when true, they will just be displayed differently than normal items
+                visible = true,
+                -- when true, hidden files will be shown if the root folder is otherwise empty
+                force_visible_in_empty_folder = false,
+                -- when true, the number of hidden items in each folder will be shown as the last entry
+                show_hidden_count = false,
                 hide_dotfiles = false,
                 hide_gitignored = false,
-                hide_hidden = false, -- only works on Windows for hidden files/directories
-                hide_by_name = {
-                    ".DS_Store",
-                    "thumbs.db",
-                    --"node_modules",
-                },
-                hide_by_pattern = { -- uses glob style patterns
-                    --"*.meta",
-                    --"*/src/*/tsconfig.json"
-                },
-                always_show = { -- remains visible even if other settings would normally hide it
-                    --".gitignored",
-                },
-                always_show_by_pattern = { -- uses glob style patterns
-                    --".env*",
-                },
-                never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-                    --".DS_Store",
-                    --"thumbs.db"
-                },
-                never_show_by_pattern = { -- uses glob style patterns
-                    --".null-ls_*",
-                },
+                -- only works on Windows for hidden files/directories
+                hide_hidden = false,
+                -- hide_by_name = {
+                --     ".DS_Store",
+                --     "thumbs.db",
+                --     "node_modules",
+                -- },
+                -- uses glob style patterns
+                -- hide_by_pattern = {
+                --     "*.meta",
+                --     -- "*/src/*/tsconfig.json"
+                -- },
+                -- remains visible even if other settings would normally hide it
+                -- always_show = {
+                --     ".gitignore",
+                -- },
+                -- uses glob style patterns
+                -- always_show_by_pattern = {
+                --     ".env*",
+                -- },
+                -- remains hidden even if visible is toggled to true, this overrides always_show
+                -- never_show = {
+                --     ".DS_Store",
+                --     "thumbs.db",
+                -- },
+                -- uses glob style patterns
+                -- never_show_by_pattern = {
+                --     ".null-ls_*",
+                -- },
             },
-            find_by_full_path_words = false, -- `false` means it only searches the tail of a path.
+            -- `false` means it only searches the tail of a path.
             -- `true` will change the filter into a full path
             -- search with space as an implicit ".*", so
-            -- `fi init`
-            -- will match: `./sources/filesystem/init.lua
-            --find_command = "fd", -- this is determined automatically, you probably don't need to set it
-            --find_args = {  -- you can specify extra args to pass to the find command.
-            --  fd = {
-            --  "--exclude", ".git",
-            --  "--exclude",  "node_modules"
-            --  }
-            --},
-            ---- or use a function instead of list of strings
-            --find_args = function(cmd, path, search_term, args)
-            --  if cmd ~= "fd" then
-            --    return args
-            --  end
-            --  --maybe you want to force the filter to always include hidden files:
-            --  table.insert(args, "--hidden")
-            --  -- but no one ever wants to see .git files
-            --  table.insert(args, "--exclude")
-            --  table.insert(args, ".git")
-            --  -- or node_modules
-            --  table.insert(args, "--exclude")
-            --  table.insert(args, "node_modules")
-            --  --here is where it pays to use the function, you can exclude more for
-            --  --short search terms, or vary based on the directory
-            --  if string.len(search_term) < 4 and path == "/home/cseickel" then
-            --    table.insert(args, "--exclude")
-            --    table.insert(args, "Library")
-            --  end
-            --  return args
-            --end,
-            group_empty_dirs = false,               -- when true, empty folders will be grouped together
-            search_limit = 50,                      -- max number of search results when using filters
-            follow_current_file = {
-                enabled = true,                     -- This will find and focus the file in the active buffer every time
-                --               -- the current file is changed while the tree is open.
-                leave_dirs_open = false,            -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+            -- `fi init` will match: `./sources/filesystem/init.lua
+            -- this is determined automatically, you probably don't need to set it
+            find_by_full_path_words = true,
+            find_command = "fd",
+            -- you can specify extra args to pass to the find command.
+            find_args = {
+                fd = {
+                    "--exclude", ".git",
+                    "--exclude", "node_modules",
+                    "--exclude", "dist",
+                    "--exclude", ".idea",
+                    "--exclude", "tmp",
+                },
             },
-            hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-            -- in whatever position is specified in window.position
-            -- "open_current",-- netrw disabled, opening a directory opens within the
+            -- or use a function instead of list of strings
+            -- find_args = function (cmd, path, search_term, args)
+            --     if cmd ~= "fd" then
+            --         return args;
+            --     end;
+            --     -- maybe you want to force the filter to always include hidden files:
+            --     table.insert(args, "--hidden");
+            --     -- but no one ever wants to see .git files
+            --     table.insert(args, "--exclude");
+            --     table.insert(args, ".git");
+            --     -- or node_modules
+            --     table.insert(args, "--exclude");
+            --     table.insert(args, "node_modules");
+            --     -- here is where it pays to use the function, you can exclude more for
+            --     -- short search terms, or vary based on the directory
+            --     if string.len(search_term) < 4 and path == "/home/cseickel" then
+            --         table.insert(args, "--exclude");
+            --         table.insert(args, "Library");
+            --     end;
+            --     return args;
+            -- end,
+            -- when true, empty folders will be grouped together
+            group_empty_dirs = false,
+            -- max number of search results when using filters
+            search_limit = 50,
+            follow_current_file = {
+                -- This will find and focus the file in the active buffer every time
+                -- the current file is changed while the tree is open.
+                -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+                enabled = true,
+                leave_dirs_open = true,
+            },
+            -- "open_current", netrw disabled, opening a directory opens within the
             -- window like netrw would, regardless of window.position
-            -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-            use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+            -- "disabled", netrw left alone, neo-tree does not handle opening dirs
+            -- netrw disabled, opening a directory opens neo-tree
+            -- in whatever position is specified in window.position
+            hijack_netrw_behavior = "open_default",
+            -- This will use the OS level file watchers to detect changes
             -- instead of relying on nvim autocmd events.
+            use_libuv_file_watcher = false,
         },
         buffers = {
             bind_to_cwd = true,
             follow_current_file = {
-                enabled = true,          -- This will find and focus the file in the active buffer every time
-                --              -- the current file is changed while the tree is open.
-                leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+                -- This will find and focus the file in the active buffer every time
+                -- the current file is changed while the tree is open.
+                enabled = true,
+
+                -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+                leave_dirs_open = true,
             },
-            group_empty_dirs = true,     -- when true, empty directories will be grouped together
-            show_unloaded = false,       -- When working with sessions, for example, restored but unfocused buffers
+            -- when true, empty directories will be grouped together
+            group_empty_dirs = false,
+            -- When working with sessions, for example, restored but unfocused buffers
             -- are mark as "unloaded". Turn this on to view these unloaded buffer.
-            terminals_first = false,     -- when true, terminals will be listed before file buffers
+            show_unloaded = false,
+            -- when true, terminals will be listed before file buffers
+            terminals_first = false,
             window = {
                 mappings = {
                     ["<bs>"] = "navigate_up",
                     ["."] = "set_root",
                     ["d"] = "buffer_delete",
                     ["bd"] = "buffer_delete",
-                    ["i"] = "show_file_details", -- see `:h neo-tree-file-actions` for options to customize the window.
+                    -- see `:h neo-tree-file-actions` for options to customize the window.
+                    ["i"] = "show_file_details",
                     ["b"] = "rename_basename",
-                    ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-                    ["oc"] = { "order_by_created", nowait = false },
-                    ["od"] = { "order_by_diagnostics", nowait = false },
-                    ["om"] = { "order_by_modified", nowait = false },
-                    ["on"] = { "order_by_name", nowait = false },
-                    ["os"] = { "order_by_size", nowait = false },
-                    ["ot"] = { "order_by_type", nowait = false },
+                    ["o"] = {
+                        "show_help",
+                        nowait = false,
+                        config = {
+                            title = "Order by",
+                            prefix_key = "o",
+                        },
+                    },
+                    ["oc"] = {
+                        "order_by_created",
+                        nowait = false,
+                    },
+                    ["od"] = {
+                        "order_by_diagnostics",
+                        nowait = false,
+                    },
+                    ["om"] = {
+                        "order_by_modified",
+                        nowait = false,
+                    },
+                    ["on"] = {
+                        "order_by_name",
+                        nowait = false,
+                    },
+                    ["os"] = {
+                        "order_by_size",
+                        nowait = false,
+                    },
+                    ["ot"] = {
+                        "order_by_type",
+                        nowait = false,
+                    },
                 },
             },
         },
@@ -617,15 +849,41 @@ return {
                     ["gc"] = "git_commit",
                     ["gp"] = "git_push",
                     ["gg"] = "git_commit_and_push",
-                    ["i"] = "show_file_details", -- see `:h neo-tree-file-actions` for options to customize the window.
+                    -- see `:h neo-tree-file-actions` for options to customize the window.
+                    ["i"] = "show_file_details",
                     ["b"] = "rename_basename",
-                    ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-                    ["oc"] = { "order_by_created", nowait = false },
-                    ["od"] = { "order_by_diagnostics", nowait = false },
-                    ["om"] = { "order_by_modified", nowait = false },
-                    ["on"] = { "order_by_name", nowait = false },
-                    ["os"] = { "order_by_size", nowait = false },
-                    ["ot"] = { "order_by_type", nowait = false },
+                    ["o"] = {
+                        "show_help",
+                        nowait = false,
+                        config = {
+                            title = "Order by",
+                            prefix_key = "o",
+                        },
+                    },
+                    ["oc"] = {
+                        "order_by_created",
+                        nowait = false,
+                    },
+                    ["od"] = {
+                        "order_by_diagnostics",
+                        nowait = false,
+                    },
+                    ["om"] = {
+                        "order_by_modified",
+                        nowait = false,
+                    },
+                    ["on"] = {
+                        "order_by_name",
+                        nowait = false,
+                    },
+                    ["os"] = {
+                        "order_by_size",
+                        nowait = false,
+                    },
+                    ["ot"] = {
+                        "order_by_type",
+                        nowait = false,
+                    },
                 },
             },
         },
@@ -635,17 +893,36 @@ return {
             renderers = {
                 root = {
                     { "indent" },
-                    { "icon", default = "C" },
-                    { "name", zindex = 10 },
+                    {
+                        "icon",
+                        default = "C",
+                    },
+                    {
+                        "name",
+                        zindex = 10,
+                    },
                 },
                 symbol = {
-                    { "indent", with_expanders = true },
-                    { "kind_icon", default = "?" },
+                    {
+                        "indent",
+                        with_expanders = true,
+                    },
+                    {
+                        "kind_icon",
+                        default = "?",
+                    },
                     {
                         "container",
                         content = {
-                            { "name", zindex = 10 },
-                            { "kind_name", zindex = 20, align = "right" },
+                            {
+                                "name",
+                                zindex = 10,
+                            },
+                            {
+                                "kind_name",
+                                zindex = 20,
+                                align = "right",
+                            },
                         },
                     },
                 },
@@ -654,7 +931,8 @@ return {
                 mappings = {
                     ["<cr>"] = "jump_to_symbol",
                     ["o"] = "jump_to_symbol",
-                    ["A"] = "noop", -- also accepts the config.show_path and config.insert_as options.
+                    -- also accepts the config.show_path and config.insert_as options.
+                    ["A"] = "noop",
                     ["d"] = "noop",
                     ["y"] = "noop",
                     ["x"] = "noop",
@@ -675,47 +953,146 @@ return {
                 -- [255] = 'Macro',
             },
             kinds = {
-                Unknown = { icon = "?", hl = "" },
-                Root = { icon = "", hl = "NeoTreeRootName" },
-                File = { icon = "󰈙", hl = "Tag" },
-                Module = { icon = "", hl = "Exception" },
-                Namespace = { icon = "󰌗", hl = "Include" },
-                Package = { icon = "󰏖", hl = "Label" },
-                Class = { icon = "󰌗", hl = "Include" },
-                Method = { icon = "", hl = "Function" },
-                Property = { icon = "󰆧", hl = "@property" },
-                Field = { icon = "", hl = "@field" },
-                Constructor = { icon = "", hl = "@constructor" },
-                Enum = { icon = "󰒻", hl = "@number" },
-                Interface = { icon = "", hl = "Type" },
-                Function = { icon = "󰊕", hl = "Function" },
-                Variable = { icon = "", hl = "@variable" },
-                Constant = { icon = "", hl = "Constant" },
-                String = { icon = "󰀬", hl = "String" },
-                Number = { icon = "󰎠", hl = "Number" },
-                Boolean = { icon = "", hl = "Boolean" },
-                Array = { icon = "󰅪", hl = "Type" },
-                Object = { icon = "󰅩", hl = "Type" },
-                Key = { icon = "󰌋", hl = "" },
-                Null = { icon = "", hl = "Constant" },
-                EnumMember = { icon = "", hl = "Number" },
-                Struct = { icon = "󰌗", hl = "Type" },
-                Event = { icon = "", hl = "Constant" },
-                Operator = { icon = "󰆕", hl = "Operator" },
-                TypeParameter = { icon = "󰊄", hl = "Type" },
+                Unknown = {
+                    icon = "?",
+                    hl = "",
+                },
+                Root = {
+                    icon = "",
+                    hl = "NeoTreeRootName",
+                },
+                File = {
+                    icon = "󰈙",
+                    hl = "Tag",
+                },
+                Module = {
+                    icon = "",
+                    hl = "Exception",
+                },
+                Namespace = {
+                    icon = "󰌗",
+                    hl = "Include",
+                },
+                Package = {
+                    icon = "󰏖",
+                    hl = "Label",
+                },
+                Class = {
+                    icon = "󰌗",
+                    hl = "Include",
+                },
+                Method = {
+                    icon = "",
+                    hl = "Function",
+                },
+                Property = {
+                    icon = "󰆧",
+                    hl = "@property",
+                },
+                Field = {
+                    icon = "",
+                    hl = "@field",
+                },
+                Constructor = {
+                    icon = "",
+                    hl = "@constructor",
+                },
+                Enum = {
+                    icon = "󰒻",
+                    hl = "@number",
+                },
+                Interface = {
+                    icon = "",
+                    hl = "Type",
+                },
+                Function = {
+                    icon = "󰊕",
+                    hl = "Function",
+                },
+                Variable = {
+                    icon = "",
+                    hl = "@variable",
+                },
+                Constant = {
+                    icon = "",
+                    hl = "Constant",
+                },
+                String = {
+                    icon = "󰀬",
+                    hl = "String",
+                },
+                Number = {
+                    icon = "󰎠",
+                    hl = "Number",
+                },
+                Boolean = {
+                    icon = "",
+                    hl = "Boolean",
+                },
+                Array = {
+                    icon = "󰅪",
+                    hl = "Type",
+                },
+                Object = {
+                    icon = "󰅩",
+                    hl = "Type",
+                },
+                Key = {
+                    icon = "󰌋",
+                    hl = "",
+                },
+                Null = {
+                    icon = "",
+                    hl = "Constant",
+                },
+                EnumMember = {
+                    icon = "",
+                    hl = "Number",
+                },
+                Struct = {
+                    icon = "󰌗",
+                    hl = "Type",
+                },
+                Event = {
+                    icon = "",
+                    hl = "Constant",
+                },
+                Operator = {
+                    icon = "󰆕",
+                    hl = "Operator",
+                },
+                TypeParameter = {
+                    icon = "󰊄",
+                    hl = "Type",
+                },
 
                 -- ccls
-                -- TypeAlias = { icon = ' ', hl = 'Type' },
-                -- Parameter = { icon = ' ', hl = '@parameter' },
-                -- StaticMethod = { icon = '󰠄 ', hl = 'Function' },
-                -- Macro = { icon = ' ', hl = 'Macro' },
+                -- TypeAlias = {
+                --     icon = " ",
+                --     hl = "Type",
+                -- },
+                -- Parameter = {
+                --     icon = " ",
+                --     hl = "@parameter",
+                -- },
+                -- StaticMethod = {
+                --     icon = "󰠄 ",
+                --     hl = "Function",
+                -- },
+                -- Macro = {
+                --     icon = " ",
+                --     hl = "Macro",
+                -- },
             },
         },
         example = {
             renderers = {
                 custom = {
                     { "indent" },
-                    { "icon", default = "C" },
+                    {
+                        "icon",
+                        default = "C",
+                    },
                     { "custom" },
                     { "name" },
                 },
