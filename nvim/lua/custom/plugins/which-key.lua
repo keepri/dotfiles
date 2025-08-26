@@ -12,7 +12,7 @@ return {
             { "<leader>g", group = "[G]it" },
             { "<leader>h", group = "Git [H]unk" },
             { "<leader>k", group = "[K]IPRI" },
-            { "<leader>l", group = "[L]int" },
+            { "<leader>l", group = "[L] Stuff" },
             { "<leader>r", group = "[R]ename" },
             { "<leader>s", group = "[S]earch" },
             { "<leader>t", group = "[T]oggle" },

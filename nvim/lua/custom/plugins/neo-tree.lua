@@ -731,6 +731,7 @@ return {
                 fd = {
                     "--exclude", ".git",
                     "--exclude", "node_modules",
+                    "--exclude", "vendor",
                     "--exclude", "dist",
                     "--exclude", ".idea",
                     "--exclude", "tmp",
