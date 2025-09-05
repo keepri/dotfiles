@@ -59,6 +59,7 @@ return {
             -- Toggles
             map({ "n", "v" }, "<leader>tb", gs.toggle_current_line_blame, { desc = "toggle git blame line" });
             map({ "n", "v" }, "<leader>td", gs.toggle_deleted, { desc = "toggle git show deleted" });
+            map({ "n", "v" }, "<leader>tw", gs.toggle_word_diff, { desc = "toggle git word diff" });
 
             -- Text object
             map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "select git hunk" });
