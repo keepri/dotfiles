@@ -370,13 +370,29 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities);
 
 local lspconfig = require("lspconfig");
 for _, server_name in pairs(server_names) do
+    -- TODO use this
+    -- vim.lsp.config(server_name, {
     lspconfig[server_name].setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        -- TODO rely on LspAttach event
+        -- on_attach = on_attach,
         settings = servers[server_name],
         filetypes = (servers[server_name] or {}).filetypes,
     });
 end;
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function (args)
+        local bufnr = args.buf;
+        local client = vim.lsp.get_client_by_id(args.data.client_id);
+
+        if not client then
+            return nil;
+        end;
+
+        on_attach(client, bufnr);
+    end,
+});
+-- vim.lsp.enable(server_names);
 
 -- -- continue setting up treesitter for blade file types
 -- ---@class ParserConfig
