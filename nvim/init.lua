@@ -102,14 +102,8 @@ local on_attach = function (client, bufnr)
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc });
     end;
 
-    local function neoformat()
-        vim.api.nvim_command("silent! Neoformat prettier");
-    end;
-
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame");
     nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction");
-    nmap("<leader>f", neoformat, "[F]ormat code using Neoformat prettier");
-    nmap("<leader>lf", vim.cmd.Format, "[F]ormat code using LSP");
 
     nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition");
     nmap("gr", require("telescope.builtin").lsp_references, "[D]ocument [S]ymbols");
@@ -135,10 +129,6 @@ local on_attach = function (client, bufnr)
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()));
     end, "[W]orkspace [L]ist Folders");
 
-    vim.api.nvim_buf_create_user_command(bufnr, "Format", function (_)
-        vim.lsp.buf.format({ async = false });
-    end, { desc = "Format current buffer with LSP" });
-
     vim.diagnostic.config({
         underline = false,
         virtual_text = {
@@ -147,6 +137,7 @@ local on_attach = function (client, bufnr)
         },
         signs = true,
         update_in_insert = false,
+        severity_sort = true,
     });
 end;
 
@@ -383,7 +374,8 @@ end;
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function (args)
         local bufnr = args.buf;
-        local client = vim.lsp.get_client_by_id(args.data.client_id);
+        local client_id = args.data.client_id;
+        local client = vim.lsp.get_client_by_id(client_id);
 
         if not client then
             return nil;

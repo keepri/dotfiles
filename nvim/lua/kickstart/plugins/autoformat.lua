@@ -17,6 +17,14 @@ return {
             vim.cmd.LspRestart();
         end;
 
+        local function lsp_format()
+            vim.lsp.buf.format({ async = false });
+        end;
+
+        local function neoformat()
+            vim.api.nvim_command("silent! Neoformat prettier");
+        end;
+
         local _augroups = {};
         local function get_augroup(client)
             if not _augroups[client.id] then
@@ -28,8 +36,21 @@ return {
             return _augroups[client.id];
         end;
 
-        vim.api.nvim_create_user_command("FormatLspToggle", function () toggle_formatting("lsp"); end, {});
-        vim.api.nvim_create_user_command("FormatNeoToggle", function () toggle_formatting("neo"); end, {});
+        vim.api.nvim_create_user_command(
+            "FormatLspToggle",
+            function ()
+                toggle_formatting("lsp");
+            end,
+            {}
+        );
+
+        vim.api.nvim_create_user_command(
+            "FormatNeoToggle",
+            function ()
+                toggle_formatting("neo");
+            end,
+            {}
+        );
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach-format", { clear = true }),
@@ -38,11 +59,33 @@ return {
                 local client = vim.lsp.get_client_by_id(client_id);
                 local bufnr = args.buf;
 
+                vim.keymap.set(
+                    "n",
+                    "<leader>f",
+                    function ()
+                        lsp_format();
+                        neoformat();
+                    end,
+                    {
+                        buffer = bufnr,
+                        desc = "[F]ormat code using LSP Format then Neoformat",
+                    }
+                );
+                -- vim.keymap.set(
+                --     "n",
+                --     "<leader>lf",
+                --     lsp_format,
+                --     {
+                --         buffer = bufnr,
+                --         desc = "[F]ormat code using LSP",
+                --     }
+                -- );
+
                 if not lsp_format_is_enabled and not neoformat_is_enabled then
                     return;
                 end;
 
-                if not client.server_capabilities.documentFormattingProvider then
+                if not client or not client.server_capabilities.documentFormattingProvider then
                     return;
                 end;
 
@@ -51,15 +94,16 @@ return {
                     buffer = bufnr,
                     callback = function ()
                         if lsp_format_is_enabled then
-                            vim.cmd.Format();
+                            lsp_format();
                         end;
 
                         if neoformat_is_enabled then
-                            vim.api.nvim_command("silent! Neoformat prettier");
+                            neoformat();
                         end;
                     end,
                 });
             end,
+
         });
     end,
 };
