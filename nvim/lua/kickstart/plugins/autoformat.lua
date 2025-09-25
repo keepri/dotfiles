@@ -19,10 +19,24 @@ return {
 
         local function lsp_format()
             vim.lsp.buf.format({ async = false });
+            vim.print("Formatted with LSP");
         end;
 
         local function neoformat()
-            vim.api.nvim_command("silent! Neoformat prettier");
+            vim.cmd("Neoformat prettier");
+            vim.print("Formatted with Neoformat prettier");
+        end;
+
+        local function format()
+            local ok, _ = pcall(neoformat);
+
+            if not ok then
+                ok = pcall(lsp_format);
+            end;
+
+            if not ok then
+                vim.print("No formatter available");
+            end;
         end;
 
         local _augroups = {};
@@ -59,33 +73,21 @@ return {
                 local client = vim.lsp.get_client_by_id(client_id);
                 local bufnr = args.buf;
 
-                vim.keymap.set(
-                    "n",
-                    "<leader>f",
-                    function ()
-                        lsp_format();
-                        neoformat();
-                    end,
-                    {
-                        buffer = bufnr,
-                        desc = "[F]ormat code using LSP Format then Neoformat",
-                    }
-                );
-                -- vim.keymap.set(
-                --     "n",
-                --     "<leader>lf",
-                --     lsp_format,
-                --     {
-                --         buffer = bufnr,
-                --         desc = "[F]ormat code using LSP",
-                --     }
-                -- );
+                vim.keymap.set("n", "<leader>f", format, {
+                    buffer = bufnr,
+                    desc = "[F]ormat code using Neoformat or LSP",
+                });
 
-                if not lsp_format_is_enabled and not neoformat_is_enabled then
-                    return;
-                end;
+                vim.keymap.set("n", "<leader>lf", lsp_format, {
+                    buffer = bufnr,
+                    desc = "[F]ormat code using LSP",
+                });
 
-                if not client or not client.server_capabilities.documentFormattingProvider then
+                if
+                    (not lsp_format_is_enabled and not neoformat_is_enabled)
+                    or not client
+                    or not client.server_capabilities.documentFormattingProvider
+                then
                     return;
                 end;
 
