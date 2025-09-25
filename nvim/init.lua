@@ -34,7 +34,7 @@ vim.o.shiftwidth = 4;
 vim.o.expandtab = true;
 vim.o.number = true;
 vim.o.guicursor = "a:block";
-vim.o.winborder = "none";
+vim.o.winborder = "single";
 
 vim.o.hlsearch = true;
 
