@@ -1,0 +1,23 @@
+-- TODO
+-- ---@type vim.lsp.Config
+-- return {
+--     filetypes = {
+--         "php",
+--         "blade",
+--     },
+--
+--     settings = {
+--         laravel = {
+--             enable = true,
+--             format = {
+--                 enable = true,
+--             },
+--             completion = {
+--                 enable = true,
+--             },
+--             diagnostics = {
+--                 enable = true,
+--             },
+--         },
+--     },
+-- };
