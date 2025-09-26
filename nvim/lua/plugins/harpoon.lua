@@ -1,0 +1,85 @@
+vim.pack.add({
+    {
+        src = "https://github.com/ThePrimeagen/harpoon",
+        version = "harpoon2",
+    },
+});
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function ()
+        local harpoon = require("harpoon");
+
+        harpoon:setup({
+            settings = {
+                save_on_toggle = true,
+                sync_on_ui_close = true,
+            },
+        });
+
+        vim.keymap.set(
+            "n",
+            "<C-e>",
+            function ()
+                local list = harpoon:list();
+                harpoon.ui:toggle_quick_menu(list);
+            end,
+            { desc = "Harpoon Buffer List [E]xplore" }
+        );
+
+        vim.keymap.set(
+            "n",
+            "<leader>a",
+            function ()
+                harpoon:list():add();
+            end,
+            { desc = "[A]ppend Buffer to Harpoon" }
+        );
+
+
+        vim.keymap.set(
+            "n",
+            "<leader>h1",
+            function ()
+                harpoon:list():select(1);
+            end,
+            { desc = "Harpoon Item [1]" }
+        );
+
+        vim.keymap.set(
+            "n",
+            "<leader>h2",
+            function ()
+                harpoon:list():select(2);
+            end,
+            { desc = "Harpoon Item [2]" }
+        );
+
+        vim.keymap.set(
+            "n",
+            "<leader>h3",
+            function ()
+                harpoon:list():select(3);
+            end,
+            { desc = "Harpoon Item [3]" }
+        );
+
+        vim.keymap.set(
+            "n",
+            "<leader>h4",
+            function ()
+                harpoon:list():select(4);
+            end,
+            { desc = "Harpoon Item [4]" }
+        );
+
+        vim.keymap.set(
+            "n",
+            "<leader>h5",
+            function ()
+                harpoon:list():select(5);
+            end,
+            { desc = "Harpoon Item [5]" }
+        );
+    end,
+});

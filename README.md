@@ -2,5 +2,6 @@
 
 - neovim
 - tmux
+- ghostty
 - alacritty
 - kitty
