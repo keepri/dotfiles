@@ -1,25 +1,39 @@
-vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" });
+vim.pack.add({
+    "https://github.com/mfussenegger/nvim-lint",
+    "https://github.com/rshkarin/mason-nvim-lint",
+});
+
+vim.diagnostic.config({
+    underline = false,
+    -- virtual_lines = true,
+    virtual_text = {
+        prefix = "",
+        spacing = 2,
+    },
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+});
 
 local is_mason_installed = pcall(require, "mason");
 local lint = require("lint");
 
 if is_mason_installed then
-    vim.pack.add({ "https://github.com/rshkarin/mason-nvim-lint" });
-
     local mason_nvim_lint = require("mason-nvim-lint");
 
     mason_nvim_lint.setup({
-        -- ensure_installed = { "eslint" },
-        -- automatic_installation = true,
+        ensure_installed = {
+            "eslint_d",
+        },
+        automatic_installation = true,
     });
 end;
 
 lint.linters_by_ft = {
-    -- javascript = { "eslint" },
-    -- javascriptreact = { "eslint" },
-
-    -- typescript = { "eslint" },
-    -- typescriptreact = { "eslint" },
+    javascript = { "eslint_d" },
+    javascriptreact = { "eslint_d" },
+    typescript = { "eslint_d" },
+    typescriptreact = { "eslint_d" },
 };
 
 vim.api.nvim_create_autocmd({

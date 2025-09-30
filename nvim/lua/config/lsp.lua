@@ -1,17 +1,7 @@
-vim.diagnostic.config({
-    underline = false,
-    virtual_text = {
-        prefix = "",
-        spacing = 2,
-    },
-    signs = true,
-    update_in_insert = false,
-    severity_sort = true,
-});
-
 local function enable_lsp_completion(bufnr)
     local clients = vim.lsp.get_clients({ bufnr = bufnr });
     local is_cmp_installed = pcall(require, "cmp");
+    local ft = vim.bo[bufnr].filetype;
 
     for _, c in ipairs(clients) do
         local cmp_support = c:supports_method("textDocument/completion", bufnr);
@@ -27,6 +17,37 @@ local function enable_lsp_completion(bufnr)
 
         if c.name == "htmx" then
             c.server_capabilities.hoverProvider = false;
+        end;
+
+        if c.name == "ts_ls" and (ft == "javascript" or ft == "javascriptreact") then
+            local new_settings = {
+                diagnostics = {
+                    ignoredCodes = {
+                        -- implicit any
+                        7044,
+                        7045,
+                        18046,
+                        -- property does not exist
+                        2339,
+                        -- argument not assignable
+                        2345,
+                        -- iterator missing from declaration
+                        2488,
+                    },
+                },
+            };
+
+            -- merge into current settings
+            c.config.settings = vim.tbl_deep_extend(
+                "force",
+                c.config.settings or {},
+                new_settings
+            );
+
+            -- notify server about config change
+            c.rpc.notify("workspace/didChangeConfiguration", {
+                settings = c.config.settings,
+            });
         end;
     end;
 end;
