@@ -14,6 +14,8 @@ local servers = {
     "htmx",
     "lua_ls",
     "intelephense",
+    "docker_language_server",
+    "docker_compose_language_service",
     -- TODO
     -- "laravel_ls",
 };
