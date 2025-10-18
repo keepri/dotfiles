@@ -36,16 +36,51 @@ lint.linters_by_ft = {
     typescriptreact = { "eslint_d" },
 };
 
+local configs = {
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.json",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    "eslint.config.js",
+    "eslint.config.mjs",
+    "eslint.config.cjs",
+    "eslint.config.ts",
+};
+
+local function has_eslint_config(cwd)
+    local config_exists = false;
+
+    for _, name in ipairs(configs) do
+        local config_path = cwd .. "/" .. name;
+        config_exists = vim.fn.filereadable(config_path) == 1;
+
+        if config_exists then
+            break;
+        end;
+    end;
+
+    return config_exists;
+end;
+
+local function try_lint()
+    local cwd = vim.fn.getcwd();
+    local eslint_configured = has_eslint_config(cwd);
+
+    if not eslint_configured then
+        return;
+    end;
+
+    lint.try_lint(nil, {});
+end;
+
 vim.api.nvim_create_autocmd({
     "BufWinEnter",
     "BufWritePost",
-    -- "TextChangedI", -- IDK about this one yet
+    "TextChanged",
 }, {
-    callback = function ()
-        lint.try_lint(nil, {
-            -- ignore_errors = true,
-        });
-    end,
+    callback = try_lint,
 });
 
-vim.keymap.set("n", "<leader>ll", lint.try_lint, { desc = "Lint" });
+vim.keymap.set("n", "<leader>ll", try_lint, { desc = "Lint" });
