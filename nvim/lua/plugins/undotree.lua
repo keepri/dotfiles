@@ -11,3 +11,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
         );
     end,
 });
+
+vim.g.undotree_WindowLayout = 2;
