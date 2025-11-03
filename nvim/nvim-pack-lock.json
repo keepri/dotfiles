@@ -1,0 +1,38 @@
+{
+  "plugins": {
+    "LuaSnip": [],
+    "cmp-buffer": [],
+    "cmp-nvim-lsp": [],
+    "cmp-path": [],
+    "cmp-treesitter": [],
+    "cmp_luasnip": [],
+    "gitsigns.nvim": [],
+    "harpoon": {
+      "version": "'harpoon2'"
+    },
+    "lazydev.nvim": [],
+    "lualine.nvim": [],
+    "mason-lspconfig.nvim": [],
+    "mason.nvim": [],
+    "mini.icons": [],
+    "neo-tree.nvim": {
+      "version": "3.0.0 - 4.0.0"
+    },
+    "neovim": [],
+    "nui.nvim": [],
+    "nvim": [],
+    "nvim-autopairs": [],
+    "nvim-cmp": [],
+    "nvim-treesitter": {
+      "version": "'master'"
+    },
+    "nvim-treesitter-textobjects": [],
+    "nvim-web-devicons": [],
+    "plenary.nvim": [],
+    "refactoring.nvim": [],
+    "telescope-fzf-native.nvim": [],
+    "telescope.nvim": {
+      "version": "'0.1.x'"
+    }
+  }
+}

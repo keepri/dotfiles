@@ -17,6 +17,8 @@ vim.g.copilot_filetypes = {
     ["bash"] = true,
     ["php"] = true,
     ["blade"] = true,
+    ["yaml"] = true,
+    ["yml"] = true,
 };
 
 vim.api.nvim_set_keymap(
