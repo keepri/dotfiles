@@ -1,11 +1,11 @@
 
 [env]
-TERM = "screen-256color"
+TERM = "xterm-256color"
 
 [window]
 decorations = "Buttonless"
 startup_mode = "Maximized"
-padding = { x = 5, y = 5 }
+padding = { x = 7, y = 7 }
 opacity = 0.9
 blur = true
 
@@ -16,11 +16,11 @@ style = { shape = "Block", blinking = "Never" }
 history = 100000
 
 [font]
-size = 19.0
-normal = { family = "BerkeleyMono Nerd Font", style = "Regular" }
-bold = { family = "BerkeleyMono Nerd Font", style = "Bold" }
-italic = { family = "BerkeleyMono Nerd Font", style = "Italic" }
-bold_italic = { family = "BerkeleyMono Nerd Font", style = "Bold Italic" }
+size = 16.0
+normal = { family = "Berkeley Mono", style = "Regular" }
+bold = { family = "Berkeley Mono", style = "Bold" }
+italic = { family = "Berkeley Mono", style = "Italic" }
+bold_italic = { family = "Berkeley Mono", style = "Bold Italic" }
 
 [bell]
 animation = "EaseOutExpo"
@@ -37,8 +37,8 @@ cursor = "CellForeground"
 # enfocado_dark
 # github_dark_tritanopia p
 # pastel_dark
-# rose-pine-moon
+# rose_pine_moon
 
 import = [
-    "~/.config/alacritty/themes/themes/rose-pine.toml"
+    "~/.config/alacritty/themes/themes/rose_pine_moon.toml"
 ]
