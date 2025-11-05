@@ -1,7 +1,3 @@
 # dotfiles
 
-- neovim
-- tmux
-- ghostty
-- alacritty
-- kitty
+I live here: `~/.config`
