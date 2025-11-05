@@ -15,7 +15,7 @@ style = { shape = "Block", blinking = "Never" }
 history = 100000
 
 [font]
-size = 18.0
+size = 14.0
 normal = { family = "Berkeley Mono", style = "Regular" }
 bold = { family = "Berkeley Mono", style = "Bold" }
 italic = { family = "Berkeley Mono", style = "Italic" }
