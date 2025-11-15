@@ -6,6 +6,9 @@
     "cmp-path": [],
     "cmp-treesitter": [],
     "cmp_luasnip": [],
+    "conform.nvim": [],
+    "copilot.vim": [],
+    "fidget.nvim": [],
     "gitsigns.nvim": [],
     "harpoon": {
       "version": "'harpoon2'"
@@ -13,6 +16,7 @@
     "lazydev.nvim": [],
     "lualine.nvim": [],
     "mason-lspconfig.nvim": [],
+    "mason-nvim-lint": [],
     "mason.nvim": [],
     "mini.icons": [],
     "neo-tree.nvim": {
@@ -23,6 +27,21 @@
     "nvim": [],
     "nvim-autopairs": [],
     "nvim-cmp": [],
+    "nvim-dap": {
+      "rev": "e97dc47",
+      "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e",
+      "src": "https://github.com/rcarriga/nvim-dap-ui"
+    },
+    "nvim-dap-virtual-text": {
+      "rev": "fbdb48c",
+      "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
+    },
+    "nvim-dap-vscode-js": [],
+    "nvim-lint": [],
+    "nvim-nio": [],
     "nvim-treesitter": {
       "version": "'master'"
     },
@@ -33,6 +52,15 @@
     "telescope-fzf-native.nvim": [],
     "telescope.nvim": {
       "version": "'0.1.x'"
-    }
+    },
+    "undotree": [],
+    "vim-fugitive": [],
+    "vim-rhubarb": [],
+    "vim-sleuth": [],
+    "vscode-js-debug": {
+      "rev": "7470237",
+      "src": "https://github.com/microsoft/vscode-js-debug"
+    },
+    "which-key.nvim": []
   }
 }
