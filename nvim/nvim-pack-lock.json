@@ -27,19 +27,8 @@
     "nvim": [],
     "nvim-autopairs": [],
     "nvim-cmp": [],
-    "nvim-dap": {
-      "rev": "e97dc47",
-      "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
-    },
-    "nvim-dap-ui": {
-      "rev": "cf91d5e",
-      "src": "https://github.com/rcarriga/nvim-dap-ui"
-    },
-    "nvim-dap-virtual-text": {
-      "rev": "fbdb48c",
-      "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
-    },
-    "nvim-dap-vscode-js": [],
+    "nvim-dap-ui": [],
+    "nvim-dap-virtual-text": [],
     "nvim-lint": [],
     "nvim-nio": [],
     "nvim-treesitter": {
@@ -57,10 +46,6 @@
     "vim-fugitive": [],
     "vim-rhubarb": [],
     "vim-sleuth": [],
-    "vscode-js-debug": {
-      "rev": "7470237",
-      "src": "https://github.com/microsoft/vscode-js-debug"
-    },
     "which-key.nvim": []
   }
 }

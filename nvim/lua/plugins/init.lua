@@ -20,4 +20,4 @@ require("plugins.fugitive");
 require("plugins.undotree");
 require("plugins.fidget");
 require("plugins.copilot");
-require("plugins.dap");
+-- require("plugins.dap");
