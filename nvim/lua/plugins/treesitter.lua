@@ -26,6 +26,7 @@ local ensure_installed = {
     "luap",
     "markdown",
     "markdown_inline",
+    "make",
     "printf",
     "python",
     "query",
