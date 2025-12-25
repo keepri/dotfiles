@@ -40,6 +40,14 @@
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "fzf": {
+      "rev": "4d563c6dfaf854260314cb5cdc9df577ec512805",
+      "src": "https://github.com/junegunn/fzf"
+    },
+    "fzf.vim": {
+      "rev": "879db51d0965515cdaef9b7f6bdeb91c65d2829e",
+      "src": "https://github.com/junegunn/fzf.vim"
+    },
     "gitsigns.nvim": {
       "rev": "23ae90a2a52fdc9b8c50dc61d6c30ebb18521343",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
@@ -48,6 +56,14 @@
       "rev": "ed1f853847ffd04b2b61c314865665e1dadf22c7",
       "src": "https://github.com/ThePrimeagen/harpoon",
       "version": "'harpoon2'"
+    },
+    "image.nvim": {
+      "rev": "446a8a5cc7a3eae3185ee0c697732c32a5547a0b",
+      "src": "https://github.com/3rd/image.nvim"
+    },
+    "indent-blankline.nvim": {
+      "rev": "005b56001b2cb30bfa61b7986bc50657816ba4ba",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
     },
     "lazydev.nvim": {
       "rev": "258d2a5ef4a3e3d6d9ba9da72c9725c53e9afcbd",
@@ -78,6 +94,10 @@
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
       "version": "3.0.0 - 4.0.0"
     },
+    "neoformat": {
+      "rev": "2b11fb9fa383636de5de9ecc7c989436c4e0f9d1",
+      "src": "https://github.com/sbdchd/neoformat"
+    },
     "neovim": {
       "rev": "72a04c4065345b51b56aed4859ea1d884f734097",
       "src": "https://github.com/rose-pine/neovim"
@@ -98,6 +118,10 @@
       "rev": "b5311ab3ed9c846b585c0c15b7559be131ec4be9",
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
+    "nvim-dap": {
+      "rev": "e97dc47e134ffb33da008658fecfae8f8547c528",
+      "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
+    },
     "nvim-dap-ui": {
       "rev": "cf91d5e2d07c72903d052f5207511bf7ecdb7122",
       "src": "https://github.com/rcarriga/nvim-dap-ui"
@@ -105,6 +129,10 @@
     "nvim-dap-virtual-text": {
       "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
+    },
+    "nvim-dap-vscode-js": {
+      "rev": "03bd29672d7fab5e515fc8469b7d07cc5994bbf6",
+      "src": "https://github.com/mxsdev/nvim-dap-vscode-js"
     },
     "nvim-lint": {
       "rev": "335a6044be16d7701001059cba9baa36fbeef422",
@@ -144,6 +172,10 @@
       "src": "https://github.com/nvim-telescope/telescope.nvim",
       "version": "'0.1.x'"
     },
+    "tree-sitter-blade": {
+      "rev": "cc764dadcbbceb3f259396fef66f970c72e94f96",
+      "src": "https://github.com/EmranMR/tree-sitter-blade"
+    },
     "undotree": {
       "rev": "fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869",
       "src": "https://github.com/mbbill/undotree"
@@ -159,6 +191,14 @@
     "vim-sleuth": {
       "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
       "src": "https://github.com/tpope/vim-sleuth"
+    },
+    "vscode-diff.nvim": {
+      "rev": "f2c6907410161f430e3301fb170fd1d2094174aa",
+      "src": "https://github.com/esmuellert/vscode-diff.nvim"
+    },
+    "vscode-js-debug": {
+      "rev": "74702375c67744e2f123d89ef950d7b6859c6f16",
+      "src": "https://github.com/microsoft/vscode-js-debug"
     },
     "which-key.nvim": {
       "rev": "904308e6885bbb7b60714c80ab3daf0c071c1492",
