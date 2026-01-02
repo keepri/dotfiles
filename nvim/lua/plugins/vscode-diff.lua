@@ -42,7 +42,7 @@ diff.setup({
     explorer = {
         position = "bottom",    -- "left" or "bottom"
         width = 34,             -- Width when position is "left" (columns)
-        height = 13,            -- Height when position is "bottom" (lines)
+        height = 8,             -- Height when position is "bottom" (lines)
         indent_markers = true,  -- Show indent markers in tree view (│, ├, └)
         icons = {
             folder_closed = "", -- Nerd Font folder icon (customize as needed)
