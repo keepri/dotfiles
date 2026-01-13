@@ -18,7 +18,7 @@ vim.g.copilot_filetypes = {
     ["php"] = true,
     ["blade"] = true,
     ["yaml"] = true,
-    ["yml"] = true,
+    ["markdown"] = true,
 };
 
 vim.api.nvim_set_keymap(
