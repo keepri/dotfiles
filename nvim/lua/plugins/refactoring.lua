@@ -1,4 +1,7 @@
-vim.pack.add({ "https://github.com/ThePrimeagen/refactoring.nvim" });
+vim.pack.add({
+    "https://github.com/ThePrimeagen/refactoring.nvim",
+    "https://github.com/lewis6991/async.nvim",
+});
 
 local rf = require("refactoring");
 

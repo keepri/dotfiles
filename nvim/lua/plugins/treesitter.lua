@@ -1,15 +1,7 @@
-vim.pack.add({
-    {
-        src = "https://github.com/nvim-treesitter/nvim-treesitter",
-        version = "master",
-    },
-    "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
-});
+vim.pack.add{ { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" } };
 
-require("nvim-treesitter.query_predicates");
-
-local config = require("nvim-treesitter.configs");
-local ensure_installed = {
+local ts = require("nvim-treesitter");
+local parsers = {
     "bash",
     "blade",
     "c",
@@ -44,59 +36,42 @@ local ensure_installed = {
     "phpdoc",
 };
 
-config.setup({
-    ensure_installed = ensure_installed,
-    modules = {},
-    sync_install = true,
-    ignore_install = {},
+ts.install(parsers);
 
-    auto_install = false,
+---@param buf integer
+---@param language string
+local function treesitter_try_attach(buf, language)
+    if not vim.treesitter.language.add(language) then return; end;
+    vim.treesitter.start(buf, language);
 
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "<c-space>",
-            node_incremental = "<c-space>",
-            scope_incremental = "<c-s>",
-            node_decremental = "<M-space>",
-        },
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-                ["aa"] = "@parameter.outer",
-                ["ia"] = "@parameter.inner",
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ac"] = "@class.outer",
-                ["ic"] = "@class.inner",
-            },
-        },
-        move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-            },
-        },
-    },
+    -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()";
+    -- vim.wo.foldmethod = "expr";
+
+    local has_indent_query = vim.treesitter.query.get(language, "indents") ~= nil;
+    if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"; end;
+end;
+
+local available_parsers = ts.get_available();
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function (args)
+        local buf, filetype = args.buf, args.match;
+
+        local language = vim.treesitter.language.get_lang(filetype);
+        if not language then return; end;
+
+        local installed_parsers = ts.get_installed("parsers");
+
+        if vim.tbl_contains(installed_parsers, language) then
+            -- Enable the parser if it is already installed
+            treesitter_try_attach(buf, language);
+        elseif vim.tbl_contains(available_parsers, language) then
+            -- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
+            ts.install(language):await(function () treesitter_try_attach(buf, language); end);
+        else
+            -- Try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
+            treesitter_try_attach(buf, language);
+        end;
+    end,
 });
 
 vim.api.nvim_create_autocmd("VimEnter", {

@@ -1,8 +1,6 @@
 vim.pack.add({
-    {
-        src = "https://github.com/nvim-telescope/telescope.nvim",
-        version = "0.1.x",
-    },
+    "https://github.com/nvim-telescope/telescope.nvim",
+    "https://github.com/nvim-telescope/telescope-ui-select.nvim",
     "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 });
 
@@ -22,6 +20,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
                     -- "ignore_case" or "respect_case" or "smart_case"
                     case_mode = "smart_case",
                 },
+                ["ui-select"] = { themes.get_dropdown() },
             },
             defaults = {
                 mappings = {
@@ -34,6 +33,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         });
 
         pcall(telescope.load_extension, "fzf");
+        pcall(telescope.load_extension, "ui-select");
 
         local function find_git_root()
             local current_file = vim.api.nvim_buf_get_name(0);
