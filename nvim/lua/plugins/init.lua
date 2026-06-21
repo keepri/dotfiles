@@ -21,5 +21,5 @@ require("plugins.undotree");
 require("plugins.fidget");
 require("plugins.copilot");
 -- require("plugins.dap");
-require("plugins.vscode-diff");
+require("plugins.codediff");
 require("plugins.wow-api");
