@@ -126,10 +126,6 @@
       "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
-    "nvim-dap": {
-      "rev": "e97dc47e134ffb33da008658fecfae8f8547c528",
-      "src": "https://codeberg.org/mfussenegger/nvim-dap.git"
-    },
     "nvim-dap-ui": {
       "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
       "src": "https://github.com/rcarriga/nvim-dap-ui"
