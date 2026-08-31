@@ -23,3 +23,4 @@ require("plugins.copilot");
 -- require("plugins.dap");
 require("plugins.codediff");
 require("plugins.wow-api");
+require("plugins.markdown-preview");
